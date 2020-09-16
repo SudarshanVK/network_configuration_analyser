@@ -54,8 +54,8 @@ python network-analyser.py
 ## Sample Output
 
 ### Script Execution
-~[alt text](images/script_execution.png)
+![alt text](images/script_execution.png)
 
 ### Generated Graph
 After slight editing, the graph will look like this.
-~[alt text](images/generated_graph.png)
+![alt text](images/generated_graph.png)
