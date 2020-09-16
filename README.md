@@ -6,6 +6,7 @@ It utilises `batfish` as its analyser engine and `N2G` to plot network graphs.
 
 ```
 The following are captured in the generated analysis reports.
+
 - Node Properties
 - Interface Properties
 - VLAN Properties
@@ -26,15 +27,17 @@ The following are captured in the generated analysis reports.
 - Undefined Structure References
 - Unused Structures
 
+
 The following network graphs are generated that can be viewed in draw.io in a web browser.
+
 - OSPF Graph
 - BGP Graph
 - L3 Network Graph
 ```
 
 ## Requirements
-This script uses batfish as the analysis engine and required the batfish docker.
-Please follow the below steps to full the latest image of batfish docker and run it.
+This script uses batfish as the analysis engine and requires the batfish docker.
+Please follow the below steps to pull the latest batfish docker and run it.
 
 ```
 docker pull batfish/allinone
@@ -48,7 +51,7 @@ pip install -r requirements.txt
 Note:- It is highly recommended that you create a new python virtual environment(for your own sanity(trust me)) 
 
 ## Executing the script
-Execute the following command to execute the script.
+The following command executes the script.
 ```
 python network-analyser.py
 ```
