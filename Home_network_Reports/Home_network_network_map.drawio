@@ -1,0 +1,235 @@
+<mxfile compressed="false" host="Electron" modified="2020-09-16T02:58:49.599Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/13.6.2 Chrome/83.0.4103.122 Electron/9.2.0 Safari/537.36" version="13.6.2" etag="QOlTjTti_XkP7_2UrERd" type="device" pages="3">
+  <diagram id="OSPF" name="OSPF">
+    <mxGraphModel dx="1106" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="r2" id="r2">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="903" y="240" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r4" id="r4">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1580" y="790" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2(10.10.24.2)(AreaID=0) == ESTABLISHED == r4(10.10.24.4)(AreaID=0" id="ff78635a2ec589c5140b5a8a6017404b">
+          <mxCell style="endArrow=none;" parent="1" source="r2" target="r4" edge="1">
+            <mxGeometry x="-0.4094" y="19" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="r3" id="r3">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1580" y="240" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2(10.10.23.2)(AreaID=0) == ESTABLISHED == r3(10.10.23.3)(AreaID=0" id="63241213df36a211f3646fe632d81e7d">
+          <mxCell style="endArrow=none;" parent="1" source="r2" target="r3" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1" id="r1">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="903" y="798" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1(10.10.14.1)(AreaID=0) == ESTABLISHED == r4(10.10.14.4)(AreaID=0" id="717953d3e855d5bd8f582817eed7540b">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="r4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3(10.10.34.3)(AreaID=0) == ESTABLISHED == r4(10.10.34.4)(AreaID=0" id="b98ede9ecb790def3915fb3f42222c97">
+          <mxCell style="endArrow=none;" parent="1" source="r3" target="r4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1(10.10.13.1)(AreaID=0) == ESTABLISHED == r3(10.10.13.3)(AreaID=0" id="c9cdbcfbf567bdc86c72c41e028ee8d7">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="r3" edge="1">
+            <mxGeometry x="-0.338" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="r1(10.10.12.1)(AreaID=0) == ESTABLISHED == r2(10.10.12.2)(AreaID=0" id="5985a21ffe4291125ae06f434b24ae00">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="r2" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="BGP" name="BGP">
+    <mxGraphModel dx="1106" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="r3 (20)" id="r3 (20)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="248" y="424" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="None (10)" id="None (10)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="688" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3 (20)(10.10.13.3) == NOT_COMPATIBLE == None (10)(10.10.13.1)" id="6ec0683f6489b22cdc9687843368a3a3">
+          <mxCell style="endArrow=none;" parent="1" source="r3 (20)" target="None (10)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="L3" name="L3">
+    <mxGraphModel dx="1106" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="r4" id="r4">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="880" y="620" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h2" id="h2">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="920" y="770" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r4([&#39;10.10.20.1&#39;]) == VLAN 0 == h2([&#39;10.10.20.20&#39;])" id="ea0d51588cd6e369eba53be48298bb6a">
+          <mxCell style="endArrow=none;" parent="1" source="r4" target="h2" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1" id="r1">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="190" y="625" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r4([&#39;10.10.14.4&#39;]) == VLAN 1 == r1([&#39;10.10.14.1&#39;])" id="7a719ea23852175e9d022b64f5052588">
+          <mxCell style="endArrow=none;" parent="1" source="r4" target="r1" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3" id="r3">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="850" y="270" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h4" id="h4">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="850" y="50" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3([&#39;10.10.30.1&#39;]) == VLAN 2 == h4([&#39;10.10.30.10&#39;])" id="81cb2773d952d538529416e37f6ab74c">
+          <mxCell style="endArrow=none;" parent="1" source="r3" target="h4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2" id="r2">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="220" y="280" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1([&#39;10.10.12.1&#39;]) == VLAN 3 == r2([&#39;10.10.12.2&#39;])" id="da9d707803a145721d2e0d6ccd1ce5eb">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="r2" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2([&#39;10.10.12.2&#39;]) == VLAN 4 == r1([&#39;10.10.12.1&#39;])" id="4aedcf42be8e36f0b02b5d9003a523ae">
+          <mxCell style="endArrow=none;" parent="1" source="r2" target="r1" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h3" id="h3">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="200" y="800" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h3([&#39;10.10.40.10&#39;]) == VLAN 5 == r1([&#39;10.10.40.1&#39;])" id="35efa0ab8df3ca559ef6394fba2e1c03">
+          <mxCell style="endArrow=none;" parent="1" source="h3" target="r1" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3([&#39;10.10.34.3&#39;]) == VLAN 6 == r4([&#39;10.10.34.4&#39;])" id="99625ae2e7775337dc302253da4a0090">
+          <mxCell style="endArrow=none;" parent="1" source="r3" target="r4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r4([&#39;10.10.34.4&#39;]) == VLAN 7 == r3([&#39;10.10.34.3&#39;])" id="8a493154a772b42f8776b9bce3c8a9db">
+          <mxCell style="endArrow=none;" parent="1" source="r4" target="r3" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2([&#39;10.10.24.2&#39;]) == VLAN 8 == r4([&#39;10.10.24.4&#39;])" id="f891eaec8cd56038df056b9bcd3517a7">
+          <mxCell style="endArrow=none;" parent="1" source="r2" target="r4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3([&#39;10.10.13.3&#39;]) == VLAN 9 == r1([&#39;10.10.13.1&#39;])" id="b5d9029463eee40e2d817bdd2cc9ec0e">
+          <mxCell style="endArrow=none;" parent="1" source="r3" target="r1" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1([&#39;10.10.13.1&#39;]) == VLAN 10 == r3([&#39;10.10.13.3&#39;])" id="a10c633eb149f028e326483b18b1b169">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="r3" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1([&#39;10.10.40.1&#39;]) == VLAN 11 == h3([&#39;10.10.40.10&#39;])" id="1e5879eb31da1b5b086d6c098b4c7ec3">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="h3" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r3([&#39;10.10.23.3&#39;]) == VLAN 12 == r2([&#39;10.10.23.2&#39;])" id="d6398cd501adc2679702f09272c322ef">
+          <mxCell style="endArrow=none;" parent="1" source="r3" target="r2" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h1" id="h1">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="220" y="80" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h1([&#39;10.10.10.10&#39;]) == VLAN 13 == r2([&#39;10.10.10.1&#39;])" id="5d48797b7cc8ecb2838bbb9111ea2f19">
+          <mxCell style="endArrow=none;" parent="1" source="h1" target="r2" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2([&#39;10.10.23.2&#39;]) == VLAN 14 == r3([&#39;10.10.23.3&#39;])" id="f974da9896d7677e15155f88c3cbc475">
+          <mxCell style="endArrow=none;" parent="1" source="r2" target="r3" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r1([&#39;10.10.14.1&#39;]) == VLAN 15 == r4([&#39;10.10.14.4&#39;])" id="fe09bad25d16f8c50ff28285f9fcc44d">
+          <mxCell style="endArrow=none;" parent="1" source="r1" target="r4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r2([&#39;10.10.10.1&#39;]) == VLAN 16 == h1([&#39;10.10.10.10&#39;])" id="fc006d10b5b82a710db60b49b8d4c1df">
+          <mxCell style="endArrow=none;" parent="1" source="r2" target="h1" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="r4([&#39;10.10.24.4&#39;]) == VLAN 17 == r2([&#39;10.10.24.2&#39;])" id="fff4babb46c01340e93eb51eb00ea45b">
+          <mxCell style="endArrow=none;" parent="1" source="r4" target="r2" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h2([&#39;10.10.20.20&#39;]) == VLAN 18 == r4([&#39;10.10.20.1&#39;])" id="a1aae93018a0944d22e2e827bae43ab2">
+          <mxCell style="endArrow=none;" parent="1" source="h2" target="r4" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="h4([&#39;10.10.30.10&#39;]) == VLAN 19 == r3([&#39;10.10.30.1&#39;])" id="c506ed7a0eb2e0e2ff889316be3b7bca">
+          <mxCell style="endArrow=none;" parent="1" source="h4" target="r3" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
