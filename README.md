@@ -41,7 +41,7 @@ docker run --name batfish -v batfish-data:/data -p 8888:8888 -p 9997:9997 -p 999
 
 Install required python packages as captured in the requirements.txt(requirements.txt) file.
 ```
-pip install requirements.txt -r
+pip install -r requirements.txt
 ```
 Note:- It is highly recommended that you create a new python virtual environment(for your own sanity(trust me)) 
 
