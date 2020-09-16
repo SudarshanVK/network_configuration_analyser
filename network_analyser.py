@@ -72,7 +72,7 @@ def analyse_network(report_dir):
     print(Fore.YELLOW + " ==> GETTING OSPF INTERFACE CONFIGURATION")
     # Batfish extract OSPF interface configuration info and write to an excel file
     ospf_interface = bfq.ospfInterfaceConfiguration().answer().frame()
-    print(Fore.YELLOW + " ==> GETTING OSPF SESSION COMPATAILITY")
+    print(Fore.YELLOW + " ==> GETTING OSPF SESSION COMPATABILITY")
     # Batfish extract OSPF session compatibility info and write to an excel file
     ospf_session = bfq.ospfSessionCompatibility().answer().frame()
     print(Fore.YELLOW + " ==> GETTING BGP CONFIGURATION")
@@ -90,7 +90,7 @@ def analyse_network(report_dir):
     f5_vip = bfq.f5BigipVipConfiguration().answer().frame()
     print(Fore.YELLOW + " ==> GETTING NAMED STRUCTURES")
     named_structure = bfq.namedStructures().answer().frame()
-    print(Fore.YELLOW + " ==> GETTING STRUCTURE DEFINATIONS")
+    print(Fore.YELLOW + " ==> GETTING STRUCTURE DEFINITIONS")
     def_structure = bfq.definedStructures().answer().frame()
     print(Fore.YELLOW + " ==> GETTING REFERENCED STRUCTURES")
     ref_structure = bfq.referencedStructures().answer().frame()
