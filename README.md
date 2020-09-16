@@ -39,13 +39,17 @@ docker pull batfish/allinone
 docker run --name batfish -v batfish-data:/data -p 8888:8888 -p 9997:9997 -p 9996:9996 batfish/allinone
 ```
 
-Install all python packages as captured in the requirements.txt(requirements.txt) file
-`pip install requirements.txt -r`
-Note:- It is highly recommended that you create a new python virtual environment(for your own sanity(Trust me)) 
+Install required python packages as captured in the requirements.txt(requirements.txt) file.
+```
+pip install requirements.txt -r
+```
+Note:- It is highly recommended that you create a new python virtual environment(for your own sanity(trust me)) 
 
 ## Executing the script
 Execute the following command to execute the script.
-`python network-analyser.py`
+```
+python network-analyser.py
+```
 
 ## Sample Output
 
