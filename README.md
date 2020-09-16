@@ -4,6 +4,7 @@
 This tool analysis network configuration to generate an analysis report and network graph.
 It utilises `batfish` as its analyser engine and `N2G` to plot network graphs.
 
+```
 The following are captured in the generated analysis reports.
 - Node Properties
 - Interface Properties
@@ -29,6 +30,7 @@ The following network graphs are generated that can be viewed in draw.io in a we
 - OSPF Graph
 - BGP Graph
 - L3 Network Graph
+```
 
 ## Requirements
 This script uses batfish as the analysis engine and required the batfish docker.
