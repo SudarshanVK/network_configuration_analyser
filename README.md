@@ -5,30 +5,30 @@ This tool analysis network configuration to generate an analysis report and netw
 It utilises `batfish` as its analyser engine and `N2G` to plot network graphs.
 
 The following are captured in the generated analysis reports.
-* Node Properties
-* Interface Properties
-* VLAN Properties
-* IP Owners
-* Layer3 Edges
-* MLAG Properties
-* OSPF Configuration
-* OSPF Interface Configuration
-* OSPF Session Compatability
-* BGP Configuration
-* BGP Peer Configuration
-* BGP Session Compatability
-* Routing Table
-* F5 VIP Configuration
-* Named Structures
-* Structure Definations
-* References Structures
-* Undefined Structure References
-* Unused Structures
+- Node Properties
+- Interface Properties
+- VLAN Properties
+- IP Owners
+- Layer3 Edges
+- MLAG Properties
+- OSPF Configuration
+- OSPF Interface Configuration
+- OSPF Session Compatability
+- BGP Configuration
+- BGP Peer Configuration
+- BGP Session Compatability
+- Routing Table
+- F5 VIP Configuration
+- Named Structures
+- Structure Definations
+- References Structures
+- Undefined Structure References
+- Unused Structures
 
 The following network graphs are generated that can be viewed in draw.io in a web browser.
-* OSPF Graph
-* BGP Graph
-* L3 Network Graph
+- OSPF Graph
+- BGP Graph
+- L3 Network Graph
 
 ## Requirements
 This script uses batfish as the analysis engine and required the batfish docker.
