@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ```
 Note:- It is highly recommended that you create a new python virtual environment(for your own sanity(trust me)) 
 
-For details on how to package a network configuration snapshot, please refer to here(https://github.com/batfish/batfish/wiki/Packaging-snapshots-for-analysis).
+For details on how to package a network configuration snapshot, please refer to [here](https://github.com/batfish/batfish/wiki/Packaging-snapshots-for-analysis).
 
 ## Executing the script
 The following command executes the script.
