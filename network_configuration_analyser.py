@@ -76,7 +76,7 @@ def analyse_network(report_dir):
     This function runs batfish questions and captures the query results into 
     a spread sheet.
 
-    :param report_dir: defines the director in which the analysis report gets 
+    :param report_dir: defines the directory in which the analysis report gets 
                         saved
     """
     # Captures the status of the configurations that were Parsed.
