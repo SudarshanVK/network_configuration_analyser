@@ -44,11 +44,13 @@ docker pull batfish/allinone
 docker run --name batfish -v batfish-data:/data -p 8888:8888 -p 9997:9997 -p 9996:9996 batfish/allinone
 ```
 
-Install required python packages as captured in the requirements.txt(requirements.txt) file.
+Install required python packages as captured in the requirements.txt file.
 ```
 pip install -r requirements.txt
 ```
 Note:- It is highly recommended that you create a new python virtual environment(for your own sanity(trust me)) 
+
+For details on how to package a network configuration snapshot, please refer to here(https://github.com/batfish/batfish/wiki/Packaging-snapshots-for-analysis).
 
 ## Executing the script
 The following command executes the script.

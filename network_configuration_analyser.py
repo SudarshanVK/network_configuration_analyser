@@ -1,4 +1,43 @@
-## Imports batfish functions
+"""
+This tool analysis network configuration to generate a configuration analysis 
+report and network graph. It utilises batfish as its analyser engine and N2G 
+to plot network graphs.
+
+The analysis report is a excel spreadsheet that catptures the following 
+information in tabs.
+- Node Properties
+- Interface Properties
+- VLAN Properties
+- IP Owners
+- Layer3 Edges
+- MLAG Properties
+- OSPF Configuration
+- OSPF Interface Configuration
+- OSPF Session Compatability
+- BGP Configuration
+- BGP Peer Configuration
+- BGP Session Compatability
+- Routing Table
+- F5 VIP Configuration
+- Named Structures
+- Structure Definations
+- References Structures
+- Undefined Structure References
+- Unused Structures
+
+In addition to the analysis report, it also produces three sets of network
+graphs which can be opened and edited by diagrams.net desktop or diagrams.net 
+web applications
+- OSPF Graph
+- BGP Graph
+- L3 Network Graph
+"""
+import json
+import pathlib
+import logging
+import pandas as pd
+
+from N2G import drawio_diagram
 from pybatfish.client.commands import *
 from pybatfish.question import bfq
 from pybatfish.question.question import load_questions
@@ -6,14 +45,7 @@ from pybatfish.datamodel.flow import HeaderConstraints, PathConstraints
 from pybatfish.datamodel import *
 from colorama import Fore, init
 
-import json
-from N2G import drawio_diagram
-import pandas as pd
-import os
-import pathlib
-
 # Set warnings level to ERROR -> Change this if you need more logs for debugging
-import logging
 logging.getLogger('pybatfish').setLevel(logging.ERROR)
 
 # Auto-reset colorama colours back after each print statement
@@ -22,85 +54,97 @@ init(autoreset=True)
 #Initialize a Drawing
 diagram = drawio_diagram()
 
-
-# NETWORK_NAME = input("Enter network name: ")
-# BASE_SNAPSHOT_NAME = input("Enter Snapshot name: ")
-# BASE_SNAPSHOT_PATH = input("Enter Snapshot Path: ")
-NETWORK_NAME = "Home_network"
+#Accepts a network name and snapshot path as input.
+NETWORK_NAME = input("ENTER NETWORK NAME: ")
+BASE_SNAPSHOT_PATH = input("ENTER SNAPSHOT PATH: ")
+# NETWORK_NAME = "Home_network"
 BASE_SNAPSHOT_NAME = "batfish-candidate"
-BASE_SNAPSHOT_PATH = "./network/Home/"
+# BASE_SNAPSHOT_PATH = "./network/Home/"
 
 ## establish the node on which batfish application is running
-# <batfish_service_ip>
-bf_session.host = "127.0.0.1"
-
-
-
+bf_session.host = "127.0.0.1" # <batfish_service_ip>
 
 def initialise_batfish():
-    ## Load all the questions.
+    # Load all the questions.
     load_questions()
+    # Initialises batfish.
     bf_set_network(NETWORK_NAME)
     bf_init_snapshot(BASE_SNAPSHOT_PATH, name=BASE_SNAPSHOT_NAME, overwrite=True)
 
-
 def analyse_network(report_dir):
+    """
+    This function runs batfish questions and captures the query results into 
+    a spread sheet.
+
+    :param report_dir: defines the director in which the analysis report gets 
+                        saved
+    """
+    # Captures the status of the configurations that were Parsed.
     parse_status = bfq.fileParseStatus().answer().frame()
+    # Batfish question to extract node properties
     print(Fore.YELLOW + " ==> GETTING NODE PROPERTIES")
-    # Batfish extract node properties and write to an excel file
     np = bfq.nodeProperties().answer().frame()
+    # Batfish question to extract interface properties
     print(Fore.YELLOW + " ==> GETTING INTERFACE PROPERTIES")
-    # Batfish extract interface properties and write to excel file
     interface = bfq.interfaceProperties().answer().frame()
+    # Batfish question to extract VLAN properties
     print(Fore.YELLOW + " ==> GETTING VLAN PROPERTIES")
     vlan_prop = bfq.switchedVlanProperties().answer().frame()
+    # Batfish question to extract IP Owners
     print(Fore.YELLOW + " ==> GETTING IPOWNERS")
-    # Batfish extract IP addresses and write to an excel file
     ip_owners = bfq.ipOwners().answer().frame()
+    # Batfish question to extract L3 edges
     print(Fore.YELLOW + " ==> GETTING L3 EDGES")
-    # Batfish extract L3 edges and write to an excel file
     l3edge = bfq.layer3Edges().answer().frame()
+    # Batfish question to extract MPLAG properties
     print(Fore.YELLOW + " ==> GETTING MLAG PROPERTIES")
-    # Batfish extract OSPF session compatibility info and write to an excel file
     mlag = bfq.mlagProperties().answer().frame()
+    # Batfish question to extract OSPF configuration
     print(Fore.YELLOW + " ==> GETTING OSPF CONFIGURATION")
-    # Batfish extract OSPF configuration info and write to an excel file
     ospf_config = bfq.ospfProcessConfiguration().answer().frame()
+    # Batfish question to extract OSPF area configuration
     print(Fore.YELLOW + " ==> GETTING OSPF AREA CONFIGURATION")
-    # Batfish extract OSPF configuration info and write to an excel file
     ospf_area_config = bfq.ospfAreaConfiguration().answer().frame()
+    # Batfish question to extract OSPF interface configuration
     print(Fore.YELLOW + " ==> GETTING OSPF INTERFACE CONFIGURATION")
-    # Batfish extract OSPF interface configuration info and write to an excel file
     ospf_interface = bfq.ospfInterfaceConfiguration().answer().frame()
+    # Batfish question to extract OSPF Session compatability
     print(Fore.YELLOW + " ==> GETTING OSPF SESSION COMPATABILITY")
-    # Batfish extract OSPF session compatibility info and write to an excel file
     ospf_session = bfq.ospfSessionCompatibility().answer().frame()
+    # Batfish question to extract BGP configuration
     print(Fore.YELLOW + " ==> GETTING BGP CONFIGURATION")
-    # Batfish extract BGP configuration info and write to an excel file
     bgp_config = bfq.bgpProcessConfiguration().answer().frame()
+    # Batfish question to extract BGP peer configuration
     print(Fore.YELLOW + " ==> GETTING BGP PEER CONFIGURATION")
     bgp_peer_config = bfq.bgpPeerConfiguration().answer().frame()
+    # Batfish question to extract BGP session compatibility
     print(Fore.YELLOW + " ==> GETTING BGP SESSION COMPATIBILITY")
-    # Batfish extract BGP session status info and write to an excel file
     bgp_session = bfq.bgpSessionStatus().answer().frame()
+    # Batfish question to extract routing table
     print(Fore.YELLOW + " ==> GETTING ROUTE TABLE")
-    # Batfish to extract routing table
     routing = bfq.routes().answer().frame()
+    # Batfish question to extract F5 VIP configuration
     print(Fore.YELLOW + " ==> GETTING F5 VIP CONFIGURATION")
     f5_vip = bfq.f5BigipVipConfiguration().answer().frame()
+    # Batfish question to extract Named Structures
     print(Fore.YELLOW + " ==> GETTING NAMED STRUCTURES")
     named_structure = bfq.namedStructures().answer().frame()
+    # Batfish question to extract Structure deginitions
     print(Fore.YELLOW + " ==> GETTING STRUCTURE DEFINITIONS")
     def_structure = bfq.definedStructures().answer().frame()
+    # Batfish question to extract referenced structures
     print(Fore.YELLOW + " ==> GETTING REFERENCED STRUCTURES")
     ref_structure = bfq.referencedStructures().answer().frame()
+    # Batfish question to extract undefined references
     print(Fore.YELLOW + " ==> GETTING UNDEFINED STRUCTURE REFERENCES")
     undefined_references = bfq.undefinedReferences().answer().frame()
+    # Batfish question to extract used structures
     print(Fore.YELLOW + " ==> GETTING UNUSED STRUCTURES")
     unused_structure = bfq.unusedStructures().answer().frame()
-
+    # Setting the path and file name were the analysis report will be saved
     analysis_report_file = report_dir + "/" + NETWORK_NAME + "_analysis_report.xlsx"
     print(Fore.YELLOW + " ==> GENERATING REPORT")
+    # Writes previously computed configuration analysis into a excel file
     with pd.ExcelWriter(analysis_report_file) as f:
         parse_status.to_excel(f,sheet_name="parse_satus", engine="xlsxwriter")
         np.to_excel(f, sheet_name="node_properties", engine="xlsxwriter")
@@ -130,9 +174,14 @@ def analyse_network(report_dir):
 
 
 def plot_ospf_graph():
-    # Run batfish query to identify OSPF neighbors
+    """
+    This function extracts OSPF session compatibility and plots a graph of 
+    OSPF neighborships.
+    """
+    # Run batfish query to identify OSPF session compatibility
     ospfneigh = bfq.ospfSessionCompatibility().answer().frame()
-    if (ospfneigh.empty):
+    # Conditional check to ensure the OSPF session list is not empty
+    if ospfneigh.empty:
         print (Fore.RED + " ==> NO OSPF NEIGHBORS FOUND")
     else:
         print(Fore.YELLOW + " ==> PLOTTING OSPF GRAPH")
@@ -142,7 +191,7 @@ def plot_ospf_graph():
         mapped_node = []
         # Initialise list to track links that are already plotted
         mapped_link_list = []
-        # initialise a drawing names OSPF
+        # initialise a drawing named OSPF
         diagram.add_diagram("OSPF")
         # Loop through each neighborship that batfish analysis has produced.
         for key in ospfneigh_json:
@@ -151,13 +200,11 @@ def plot_ospf_graph():
             current_link_reverse = []
             # Extract details of the neighbor
             neighbor = ospfneigh_json[key]
-            # print (json.dumps(neighbor, indent=4))
-            # Extract node id and remote node if of each neighbor
+            # Extract node id and remote node if of neighbor
             node_id = f'{neighbor["Interface"]["hostname"]}'
             remote_node_id = f'{neighbor["Remote_Interface"]["hostname"]}'
-            # print (node_id)
             # Check if node has already been plotted
-            # plot the node is not and add node to mapped_node list
+            # plot the node it is not and add node to mapped_node list
             if node_id not in mapped_node:
                 diagram.add_node(id=f"{node_id}")
                 mapped_node.append(node_id)
@@ -169,13 +216,10 @@ def plot_ospf_graph():
             # Extract details of current link and reverse of the current link
             current_link = [f"{node_id}", f"{remote_node_id}"]
             current_link_reverse = [f"{remote_node_id}", f"{node_id}"]
-            # print (f" Current Link {current_link_list}")
-            # print (f" Reverse of Current Link {current_link_list_reverse}")
             # Check if the current link is in the mapped link list
             # if not, plot the link and add both the link and the reverse of the link
             # to the mapped link list
             if current_link not in mapped_link_list:
-                # print ("link not mapped")
                 diagram.add_link(
                     f"{node_id}",
                     f"{remote_node_id}",
@@ -185,25 +229,25 @@ def plot_ospf_graph():
                 )
                 mapped_link_list.append(current_link)
                 mapped_link_list.append(current_link_reverse)
-            #     print (f" Mapped Link {mapped_link_list}\n")
-            # else:
-            #     print (" Link already mapped\n")
 
-def plot_bgp_graph():   
+def plot_bgp_graph():
+    """
+    This function extracts BGP session compatibility and plots a graph of 
+    BGP neighborships.
+    """ 
     # Run batfish query to identify BGP neighbors
     bgpneigh = bfq.bgpSessionStatus().answer().frame()
-    if (bgpneigh.empty):
+    # Conditional check to ensure the BGP session list is not empty
+    if bgpneigh.empty:
         print(Fore.RED + " ==> NO BGP NEIGHBORS FOUND")
     else:
         print(Fore.YELLOW + " ==> PLOTTING BGP GRAPH")
         bgpneigh_json = json.loads(bgpneigh.to_json(orient="index"))
-        # print (json.dumps(bgpneigh_json, indent=4))
-        # Initialise list to track nodes that are already plotted.
         # Initialise list to track nodes that are already plotted.
         mapped_node = []
         # Initialise list to track links that are already plotted
         mapped_link_list = []
-        # initialise a drawing names BGP
+        # initialise a drawing named BGP
         diagram.add_diagram("BGP")
         for key in bgpneigh_json:
             # Initialise local list to map current link and reverse of current link.
@@ -211,12 +255,9 @@ def plot_bgp_graph():
             current_link_reverse = []
             # Extract details of the neighbor
             neighbor = bgpneigh_json[key]
-            # print (json.dumps(neighbor, indent=4))
             # Extract node id and remote node if of each neighbor
             node_id = f'{neighbor["Node"]}\n({neighbor["Local_AS"]})'
             remote_node_id = f'{neighbor["Remote_Node"]}\n({neighbor["Remote_AS"]})'
-            # print(node_id)
-            # print(remote_node_id)
             # Check if node has already been plotted
             # plot the node is not and add node to mapped_node list
             if node_id not in mapped_node:
@@ -231,7 +272,6 @@ def plot_bgp_graph():
             current_link = [f"{node_id}", f"{remote_node_id}"]
             current_link_reverse = [f"{remote_node_id}", f"{node_id}"]
             if current_link not in mapped_link_list:
-                # print ("link not mapped")
                 diagram.add_link(
                     f"{node_id}",
                     f"{remote_node_id}",
@@ -241,24 +281,23 @@ def plot_bgp_graph():
                 )
                 mapped_link_list.append(current_link)
                 mapped_link_list.append(current_link_reverse)
-            #     print (f" Mapped Link {mapped_link_list}\n")
-            # else:
-            #     print (" Link already mapped\n")
 
 def plot_l3_graph():
+    """
+    This function extracts L3 edges and plots a graph of L3 relationships
+    """
     # Run batfish query to identify L3 edges
     l3edges = bfq.layer3Edges().answer().frame()
-    if (l3edges.empty):
+    # Conditional check to ensure the L3 edges list is not empty
+    if l3edges.empty:
         print(Fore.RED + " ==> NO L3 ADJENCIES FOUND")
     else:
         print(Fore.YELLOW + " ==> PLOTTING L3 NETWORK GRAPH")
         l3edges_json = json.loads(l3edges.to_json(orient="index"))
-        # print (json.dumps(l3edges_json, indent=4))
-        # # Initialise list to track nodes that are already plotted.
+        # Initialise list to track nodes that are already plotted.
         mapped_node = []
-        # # Initialise list to track links that are already plotted
-        # mapped_link_list = []
-        # # initialise a drawing names OSPF
+        # Initialise list to track links that are already plotted
+        # initialise a drawing named L3
         diagram.add_diagram("L3")
         for key in l3edges_json:
             # Initialise local list to map current link and reverse of current link.
@@ -266,12 +305,8 @@ def plot_l3_graph():
             current_link_reverse = []
             # Extract details of the neighbor
             neighbor = l3edges_json[key]
-            # print (key)
-            # print (json.dumps(neighbor, indent=4))
             node_id = f'{neighbor["Interface"]["hostname"]}'
             remote_node_id = f'{neighbor["Remote_Interface"]["hostname"]}'
-            # print(node_id)
-            # print(remote_node_id)
             # Check if node has already been plotted
             # plot the node is not and add node to mapped_node list
             if node_id not in mapped_node:
@@ -313,11 +348,8 @@ def main():
     print (Fore.GREEN
             + "\n***************************************************************"
             + "\n*          NETWORK CONFIGURATION ANALYSIS COMPLETE            *"
-            + "\n*        CHECK CURRENT WORKING DIRECTORY FOR REPORTS          *"
             + "\n***************************************************************"
             )
-
-
 
 if __name__ == "__main__":
     main()
