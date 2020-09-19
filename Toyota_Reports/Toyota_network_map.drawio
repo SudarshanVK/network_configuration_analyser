@@ -1,0 +1,366 @@
+<mxfile compressed="false" host="Electron" modified="2020-09-18T04:48:40.798Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/13.7.3 Chrome/85.0.4183.98 Electron/10.1.2 Safari/537.36" version="13.7.3" etag="0vnMNol_MRpxKt8TbPSQ" type="device" pages="3">
+  <diagram id="OSPF" name="OSPF">
+    <mxGraphModel dx="1106" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="toynobpsr01" id="toynobpsr01">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1050" y="170" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-02" id="t-npa-rtr-of-02">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="230" y="710" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01(172.21.231.241)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-02(172.21.231.242)(AreaID=0" id="34fb4cf7d62f0d001eb6e7feff6354bf">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03" id="t-npa-rtr-of-03">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="260" y="140" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01(172.21.231.241)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-03(172.21.231.243)(AreaID=0" id="04943d5bbe9ef741d0db329ebc8a2921">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04" id="t-npa-rtr-of-04">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1110" y="710" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04(172.21.231.245)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-02(172.21.231.242)(AreaID=0" id="a912496407462e942f3b08061f4ae048">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-04" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04(172.21.231.245)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-03(172.21.231.243)(AreaID=0" id="ccb17b56f60f432718a5d732745fc928">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-04" target="t-npa-rtr-of-03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01(172.21.231.241)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-04(172.21.231.245)(AreaID=0" id="db98a70eae7ee5fca152eadb5885ec41">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-04" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03(172.21.231.243)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-02(172.21.231.242)(AreaID=0" id="635ddcd32f633ee87bce7cbd25a68066">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-03" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00" id="t-npa-rtr-of-00">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="648" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01(172.21.231.158)(AreaID=0) == ESTABLISHED == t-npa-rtr-of-00(172.21.231.146)(AreaID=0" id="057235448f6b6471aa4fac7fccd21aec">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-00" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="BGP" name="BGP">
+    <mxGraphModel dx="1106" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="t-npa-rtr-of-00 (65533)" id="t-npa-rtr-of-00 (65533)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="333" y="692" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="None (65530)" id="None (65530)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="670" y="800" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00 (65533)(132.147.11.17) == NOT_COMPATIBLE == None (65530)(132.147.11.20)" id="0e3c789738fa6c93e1e899c4b7506e72">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-00 (65533)" target="None (65530)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01 (65533)" id="t-npa-rtr-of-01 (65533)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="241" y="381" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00 (65533)(172.21.231.25) == ESTABLISHED == t-npa-rtr-of-01 (65533)(172.21.231.26)" id="2f7b07fec26a407cc14d606df24a6f63">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-00 (65533)" target="t-npa-rtr-of-01 (65533)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="None (7474)" id="None (7474)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1039" y="170" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01 (65533)(10.10.10.46) == NOT_COMPATIBLE == None (7474)(10.10.10.45)" id="364791a7229636f28f622deb36bfce4d">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-01 (65533)" target="None (7474)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-01 (64778)" id="t-npa-rtr-tt-01 (64778)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1060" y="648" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="None (1221)" id="None (1221)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="923" y="341" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-01 (64778)(165.228.22.82) == NOT_COMPATIBLE == None (1221)(165.228.22.81)" id="065a2aeecd069651944ab5e037fa8c77">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-01 (64778)" target="None (1221)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-02 (64778)" id="t-npa-rtr-tt-02 (64778)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="960" y="773" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-01 (64778)(203.19.140.2) == ESTABLISHED == t-npa-rtr-tt-02 (64778)(203.19.140.3)" id="f8d2395f3657f983eaae7efca14b76a5">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-01 (64778)" target="t-npa-rtr-tt-02 (64778)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-02 (64778)(165.228.22.126) == NOT_COMPATIBLE == None (1221)(165.228.22.125)" id="a5f250fab56b4e5d9d1987accbc6aff2">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-02 (64778)" target="None (1221)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01 (65111)" id="toynobpsr01 (65111)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="446" y="58" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="None (65110)" id="None (65110)">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1119" y="331" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01 (65111)(10.10.17.98) == NOT_COMPATIBLE == None (65110)(10.10.17.97)" id="cda30f8783b3c1b3b97a25cea1e77b1f">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01 (65111)" target="None (65110)" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="L3" name="L3">
+    <mxGraphModel dx="1106" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="t-npa-rtr-of-02" id="t-npa-rtr-of-02">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="949" y="481" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03" id="t-npa-rtr-of-03">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1150" y="289" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-02([&#39;172.21.231.242&#39;]) == VLAN 0 == t-npa-rtr-of-03([&#39;172.21.231.243&#39;])" id="050737131e2f0c6b7414230da6c25b58">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-02" target="t-npa-rtr-of-03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03([&#39;172.21.231.243&#39;]) == VLAN 1 == t-npa-rtr-of-02([&#39;172.21.231.242&#39;])" id="7978f7c2613c9e5a63bbd705b89c2824">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-03" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04" id="t-npa-rtr-of-04">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="539" y="34" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04([&#39;172.21.231.245&#39;]) == VLAN 2 == t-npa-rtr-of-02([&#39;172.21.231.242&#39;])" id="f04ce0eba7b3691c9e80a2c8d69efe88">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-04" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpfw01-failover-secondary" id="toynobpfw01-failover-secondary">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="988" y="378" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr03" id="toynobpsr03">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1020" y="591" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpfw01-failover-secondary([&#39;10.14.206.2&#39;]) == VLAN 3 == toynobpsr03([&#39;10.14.206.235&#39;])" id="201a3000385b8a88edf7de4aeca86406">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpfw01-failover-secondary" target="toynobpsr03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01" id="toynobpsr01">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="230" y="500" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01" id="t-npa-rtr-of-01">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="1069" y="50" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01([&#39;172.21.231.158&#39;]) == VLAN 4 == t-npa-rtr-of-01([&#39;172.21.231.147&#39;])" id="1321650356664cec9541c8d79063ec20">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00" id="t-npa-rtr-of-00">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="180" y="150" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01([&#39;172.21.231.147&#39;]) == VLAN 5 == t-npa-rtr-of-00([&#39;172.21.231.146&#39;])" id="2ae03a5ef291c7eed3b5cb72045def9a">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-01" target="t-npa-rtr-of-00" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01([&#39;10.100.3.130&#39;]) == VLAN 6 == t-npa-rtr-of-03([&#39;10.100.3.129&#39;])" id="7bbcbed8b17256b3076a66bf5d804dbb">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-01" target="t-npa-rtr-of-03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04([&#39;172.21.231.245&#39;]) == VLAN 7 == t-npa-rtr-of-03([&#39;172.21.231.243&#39;])" id="adb2bc9484906649ba2a29767f8a57cb">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-04" target="t-npa-rtr-of-03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01([&#39;172.21.231.241&#39;]) == VLAN 8 == t-npa-rtr-of-03([&#39;172.21.231.243&#39;])" id="c69168a2b1f6c665ea8ec11efd4c57ab">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-03" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01([&#39;172.21.231.158&#39;]) == VLAN 9 == t-npa-rtr-of-00([&#39;172.21.231.146&#39;])" id="e6ea97fc8531a4e53e75692332c8b72d">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-00" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00([&#39;172.21.231.25&#39;]) == VLAN 10 == t-npa-rtr-of-01([&#39;172.21.231.26&#39;])" id="b38e0e531ed9084d16f69f1fcc2f0e6b">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-00" target="t-npa-rtr-of-01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01([&#39;172.21.231.241&#39;]) == VLAN 11 == t-npa-rtr-of-02([&#39;172.21.231.242&#39;])" id="7c1bbf6f0a103ffbcd21e034546a20e1">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr01([&#39;172.21.231.241&#39;]) == VLAN 12 == t-npa-rtr-of-04([&#39;172.21.231.245&#39;])" id="4a34251a0934612b1eede36051566519">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr01" target="t-npa-rtr-of-04" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01([&#39;172.21.231.26&#39;]) == VLAN 13 == t-npa-rtr-of-00([&#39;172.21.231.25&#39;])" id="1d8dd0994419c109bb7ee919ac1436be">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-01" target="t-npa-rtr-of-00" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-02([&#39;10.100.3.1&#39;]) == VLAN 14 == t-npa-rtr-of-00([&#39;10.100.3.2&#39;])" id="af42c5da435e811bc5d8b730f4023cdf">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-02" target="t-npa-rtr-of-00" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-02" id="t-npa-rtr-tt-02">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="283" y="611" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-01" id="t-npa-rtr-tt-01">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="917" y="602" width="120" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-02([&#39;172.21.231.130&#39;]) == VLAN 15 == t-npa-rtr-tt-01([&#39;172.21.231.129&#39;])" id="c98df1051c68f7fbc9ca8b605051a7a6">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-02" target="t-npa-rtr-tt-01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-01([&#39;203.19.140.2&#39;]) == VLAN 16 == t-npa-rtr-tt-02([&#39;203.19.140.3&#39;])" id="14021da8a51d5520a10916d4d41c15f9">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-01" target="t-npa-rtr-tt-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00([&#39;172.21.231.146&#39;]) == VLAN 17 == toynobpsr01([&#39;172.21.231.158&#39;])" id="e11b2ca45ab9175be059661e2f05388a">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-00" target="toynobpsr01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-01([&#39;172.21.231.129&#39;]) == VLAN 18 == t-npa-rtr-tt-02([&#39;172.21.231.130&#39;])" id="37bd1f2ee682bbee477a051ff82bf07d">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-01" target="t-npa-rtr-tt-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-02([&#39;172.21.231.242&#39;]) == VLAN 19 == t-npa-rtr-of-04([&#39;172.21.231.245&#39;])" id="60c631b859abfec60feb0a5cbfe77a83">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-02" target="t-npa-rtr-of-04" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-04([&#39;172.21.231.245&#39;]) == VLAN 20 == toynobpsr01([&#39;172.21.231.241&#39;])" id="3d278e4b69adbd55b57e0323af20120e">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-04" target="toynobpsr01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00([&#39;10.100.3.2&#39;]) == VLAN 21 == t-npa-rtr-of-02([&#39;10.100.3.1&#39;])" id="b9a5ece2fc58aaaab79b2d80ad07723b">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-00" target="t-npa-rtr-of-02" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03([&#39;172.21.231.243&#39;]) == VLAN 22 == t-npa-rtr-of-04([&#39;172.21.231.245&#39;])" id="cf27305f270b5aab49b6f957f51c5b4c">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-03" target="t-npa-rtr-of-04" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-tt-02([&#39;203.19.140.3&#39;]) == VLAN 23 == t-npa-rtr-tt-01([&#39;203.19.140.2&#39;])" id="66c226970ebb992fc8d02e808123dcbd">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-tt-02" target="t-npa-rtr-tt-01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03([&#39;10.100.3.129&#39;]) == VLAN 24 == t-npa-rtr-of-01([&#39;10.100.3.130&#39;])" id="8027d2f31a7606d777db2008c28a489e">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-03" target="t-npa-rtr-of-01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-03([&#39;172.21.231.243&#39;]) == VLAN 25 == toynobpsr01([&#39;172.21.231.241&#39;])" id="d3fd7fac409783ec0646b2decc34fb8d">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-03" target="toynobpsr01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-01([&#39;172.21.231.147&#39;]) == VLAN 26 == toynobpsr01([&#39;172.21.231.158&#39;])" id="5e750136dd43bbe40289be608f4c2996">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-01" target="toynobpsr01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-02([&#39;172.21.231.242&#39;]) == VLAN 27 == toynobpsr01([&#39;172.21.231.241&#39;])" id="8d2c770164229be81adf9bb22c9ef6cd">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-02" target="toynobpsr01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="toynobpsr03([&#39;10.14.206.235&#39;]) == VLAN 28 == toynobpfw01-failover-secondary([&#39;10.14.206.2&#39;])" id="e6bd1439fb3092d330e7f1801fd3e003">
+          <mxCell style="endArrow=none;" parent="1" source="toynobpsr03" target="toynobpfw01-failover-secondary" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="t-npa-rtr-of-00([&#39;172.21.231.146&#39;]) == VLAN 29 == t-npa-rtr-of-01([&#39;172.21.231.147&#39;])" id="a7ae9d6773b68fd528c4ee206ac07249">
+          <mxCell style="endArrow=none;" parent="1" source="t-npa-rtr-of-00" target="t-npa-rtr-of-01" edge="1">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

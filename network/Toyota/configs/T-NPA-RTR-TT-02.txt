@@ -1,0 +1,540 @@
+
+!
+! Last configuration change at 13:43:52 AEDT Thu Mar 19 2020 by fujitsu
+! NVRAM config last updated at 16:44:35 AEDT Tue Feb 25 2020 by fujitsu
+!
+version 15.0
+no service pad
+service timestamps debug datetime localtime show-timezone
+service timestamps log datetime localtime show-timezone
+service password-encryption
+!
+hostname T-NPA-RTR-TT-02
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging buffered 40960 warnings
+!
+<removed>
+aaa new-model
+!
+!
+aaa group server tacacs+ FALTACACS
+ server-private 137.172.156.75 key 7 <removed>
+ server-private 137.172.147.92 key 7 <removed>
+!
+aaa authentication login default group FALTACACS enable local
+aaa authentication login no_tacacs local
+aaa authentication enable default group FALTACACS enable
+aaa authentication ppp default local
+aaa authorization console
+aaa authorization exec default group FALTACACS local 
+aaa accounting exec default start-stop group FALTACACS
+aaa accounting commands 1 default start-stop group FALTACACS
+aaa accounting commands 15 default start-stop group FALTACACS
+aaa accounting network default start-stop group tacacs+
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone AEST 10 0
+clock summer-time AEDT recurring 1 Sun Oct 2:00 1 Sun Apr 3:00
+switch 1 provision ws-c3750x-24
+system mtu routing 1500
+ip routing
+no ip cef optimize neighbor resolution
+!
+!
+!
+no ip domain-lookup
+ip domain-name toyota-au.local
+vtp mode transparent
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause security-violation
+errdisable recovery cause channel-misconfig (STP)
+errdisable recovery cause pagp-flap
+errdisable recovery cause dtp-flap
+errdisable recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+errdisable recovery cause gbic-invalid
+errdisable recovery cause l2ptguard
+errdisable recovery cause psecure-violation
+errdisable recovery cause port-mode-failure
+errdisable recovery cause dhcp-rate-limit
+errdisable recovery cause pppoe-ia-rate-limit
+errdisable recovery cause mac-limit
+errdisable recovery cause vmps
+errdisable recovery cause storm-control
+errdisable recovery cause inline-power
+errdisable recovery cause arp-inspection
+errdisable recovery cause loopback
+errdisable recovery cause small-frame
+errdisable recovery cause psp
+errdisable recovery interval 90
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 12
+ name SW-to-SRX-Untrust
+!
+ip ftp source-interface Loopback1
+ip tftp source-interface Loopback1
+ip ssh version 2
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 172.21.231.225 255.255.255.255
+!
+interface Port-channel12
+ description Toyota Switch to switch interconnection
+ switchport access vlan 12
+ switchport mode access
+!
+interface FastEthernet0
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ description NCIP - Telstra Secondary Internet PE Router- N3824406R - 1000M
+ no switchport
+ bandwidth 1000000
+ ip address 165.228.22.126 255.255.255.252
+ ip access-group 110 in
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ no cdp enable
+!
+interface GigabitEthernet1/0/2
+ description Toyota Switch to switch interconnection
+ switchport access vlan 12
+ switchport mode access
+ spanning-tree portfast
+ channel-protocol lacp
+ channel-group 12 mode active
+!
+interface GigabitEthernet1/0/3
+ shutdown
+!
+interface GigabitEthernet1/0/4
+ shutdown
+!
+interface GigabitEthernet1/0/5
+ shutdown
+!
+interface GigabitEthernet1/0/6
+ shutdown
+!
+interface GigabitEthernet1/0/7
+ shutdown
+!
+interface GigabitEthernet1/0/8
+ shutdown
+!
+interface GigabitEthernet1/0/9
+ shutdown
+!
+interface GigabitEthernet1/0/10
+ shutdown
+!
+interface GigabitEthernet1/0/11
+ shutdown
+!
+interface GigabitEthernet1/0/12
+ shutdown
+!
+interface GigabitEthernet1/0/13
+ shutdown
+!
+interface GigabitEthernet1/0/14
+ shutdown
+!
+interface GigabitEthernet1/0/15
+ shutdown
+!
+interface GigabitEthernet1/0/16
+ shutdown
+!
+interface GigabitEthernet1/0/17
+ shutdown
+!
+interface GigabitEthernet1/0/18
+ shutdown
+!
+interface GigabitEthernet1/0/19
+ shutdown
+!
+interface GigabitEthernet1/0/20
+ shutdown
+!
+interface GigabitEthernet1/0/21
+ shutdown
+!
+interface GigabitEthernet1/0/22
+ description NCIP  Connection to SRX DMZ for management
+ no switchport
+ ip address 172.21.231.130 255.255.255.240
+ speed 1000
+ duplex full
+ no cdp enable
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description Toyota Switch to switch interconnection
+ switchport access vlan 12
+ switchport mode access
+ speed 1000
+ duplex full
+ spanning-tree portfast
+ channel-protocol lacp
+ channel-group 12 mode active
+!
+interface GigabitEthernet1/0/24
+ description Toyota for SRX650 untrust interface Firewalls
+ switchport access vlan 12
+ switchport mode access
+ speed 1000
+ duplex full
+ no cdp enable
+ spanning-tree portfast
+!
+interface GigabitEthernet1/1/1
+ shutdown
+!
+interface GigabitEthernet1/1/2
+ shutdown
+!
+interface GigabitEthernet1/1/3
+ shutdown
+!
+interface GigabitEthernet1/1/4
+ shutdown
+!
+interface TenGigabitEthernet1/1/1
+ shutdown
+!
+interface TenGigabitEthernet1/1/2
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan12
+ description Toyota for SRX650 untrust interface Firewalls
+ ip address 203.19.140.3 255.255.255.248
+ standby 12 ip 203.19.140.1
+ standby 12 preempt
+ standby 12 authentication T0Y0T@
+!
+router bgp 64778
+ bgp router-id 172.21.231.225
+ bgp log-neighbor-changes
+ network 165.228.22.124 mask 255.255.255.252
+ network 203.19.140.0
+ redistribute static
+ neighbor 2001:8000:104:4F::1 remote-as 1221
+ neighbor 165.228.22.125 remote-as 1221
+ neighbor 165.228.22.125 prefix-list announce out
+ neighbor 165.228.22.125 route-map eBGP_ACL out
+ neighbor 203.19.140.2 remote-as 64778
+ neighbor 203.19.140.2 description iBGP with our other Primary Router
+ neighbor 203.19.140.2 password 7 01272B277A59565E790D0F48
+ neighbor 203.19.140.2 update-source Vlan12
+ neighbor 203.19.140.2 next-hop-self
+ neighbor 203.19.140.2 soft-reconfiguration inbound
+!
+!
+no ip http server
+no ip http secure-server
+!
+ip route 10.255.254.0 255.255.255.0 203.19.140.4
+ip route 137.172.146.160 255.255.255.224 203.19.140.4
+ip route 137.172.148.24 255.255.255.248 203.19.140.4
+ip route 147.76.18.0 255.255.255.0 203.19.140.4
+ip route 150.45.152.8 255.255.255.255 203.19.140.4
+ip route 192.168.206.83 255.255.255.255 203.19.140.4
+ip route 192.168.206.174 255.255.255.255 203.19.140.4
+ip route 192.168.206.175 255.255.255.255 203.19.140.4
+ip route 192.168.206.207 255.255.255.255 203.19.140.4
+ip route 192.168.206.209 255.255.255.255 203.19.140.4
+ip route 192.168.208.107 255.255.255.255 203.19.140.4
+ip route 203.19.140.0 255.255.255.0 203.19.140.4
+ip route 216.14.206.0 255.255.255.0 203.19.140.4
+!
+ip access-list standard NEW_VTY
+ permit 132.147.11.17
+ permit 10.10.10.42
+ permit 10.10.10.46
+ permit 150.45.152.8
+ permit 132.147.11.33
+ permit 192.168.206.7
+ permit 192.168.206.10
+ permit 10.147.26.102
+ permit 192.168.206.84
+ permit 192.168.206.83
+ permit 137.172.146.160 0.0.0.31
+ permit 137.172.148.24 0.0.0.7
+ deny   any log
+!
+!
+ip prefix-list announce description TMCA allowed routing announcements
+ip prefix-list announce seq 5 permit 203.19.140.0/24
+ip prefix-list announce seq 10 deny 0.0.0.0/0 le 32
+logging trap warnings
+logging source-interface GigabitEthernet1/0/22
+logging host 192.168.206.207
+logging host 192.168.208.107
+logging host 192.168.206.83
+logging host 137.172.146.183
+access-list 1 permit 203.19.140.0 0.0.0.255
+access-list 53 permit 150.45.152.8
+access-list 53 permit 192.168.206.150
+access-list 53 permit 192.168.206.250
+access-list 53 permit 192.168.206.207
+access-list 53 permit 192.168.208.107
+access-list 53 permit 10.147.26.102
+access-list 53 permit 192.168.206.84
+access-list 53 permit 192.168.206.83
+access-list 53 permit 10.255.254.0 0.0.0.255
+access-list 53 permit 137.172.146.160 0.0.0.31
+access-list 53 permit 137.172.148.24 0.0.0.7
+access-list 53 deny   any log
+access-list 54 permit 137.172.146.160 0.0.0.31
+access-list 54 permit 137.172.148.24 0.0.0.7
+access-list 60 permit 150.45.152.8
+access-list 60 permit 192.168.206.150
+access-list 60 permit 192.168.206.250
+access-list 60 permit 192.168.206.207
+access-list 60 permit 172.21.165.156
+access-list 60 permit 192.168.208.107
+access-list 60 permit 10.147.26.102
+access-list 60 permit 192.168.206.84
+access-list 60 permit 192.168.206.83
+access-list 60 deny   any log
+access-list 61 remark - ACL FOR SSH SOURCE FILTERING
+access-list 61 permit 192.168.206.174
+access-list 61 permit 192.168.206.175
+access-list 61 permit 192.168.206.149
+access-list 61 permit 192.168.206.207
+access-list 61 permit 192.168.206.209
+access-list 61 permit 192.168.206.84
+access-list 61 permit 192.168.206.83
+access-list 61 permit 10.10.10.0 0.0.0.63
+access-list 61 permit 132.147.11.0 0.0.0.255
+access-list 61 deny   any log
+access-list 110 remark - protect against some reconnaissance attacks
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq echo
+access-list 110 deny   icmp any 203.19.140.0 0.0.0.7
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq discard
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq daytime
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq chargen
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq 22
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq telnet
+access-list 110 deny   tcp any 203.19.140.0 0.0.0.7 eq finger
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq echo
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq discard
+access-list 110 deny   icmp any 165.228.22.124 0.0.0.3
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq daytime
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq chargen
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq 22
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq telnet
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq 69
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq ftp
+access-list 110 deny   tcp any 165.228.22.124 0.0.0.3 eq finger
+access-list 110 remark - Block Spoof/Malicious packets
+access-list 110 deny   ip 127.0.0.0 0.255.255.255 any
+access-list 110 deny   ip 192.168.0.0 0.0.0.255 any
+access-list 110 deny   ip 172.16.0.0 0.0.255.255 any
+access-list 110 deny   ip 10.0.0.0 0.255.255.255 any
+access-list 110 deny   ip host 0.0.0.0 any
+access-list 110 deny   ip 224.0.0.0 31.255.255.255 any
+access-list 110 deny   icmp any any redirect
+access-list 110 remark - Restrict SNMP
+access-list 110 deny   udp any any eq snmp
+access-list 110 permit ip any 0.0.0.0 255.255.255.0
+access-list 110 permit ip any 203.19.140.0 0.0.0.255
+access-list 110 permit ip any 165.228.22.124 0.0.0.3
+access-list 195 permit ip any host 203.19.140.74 log-input
+access-list 195 permit ip any host 203.19.140.124 log-input
+access-list 195 permit ip any host 203.19.140.125 log-input
+access-list 195 permit ip any host 203.19.140.126 log-input
+access-list 195 permit ip host 203.19.140.74 any log-input
+access-list 195 permit ip host 203.19.140.124 any log-input
+access-list 195 permit ip host 203.19.140.125 any log-input
+access-list 195 permit ip host 203.19.140.126 any log-input
+!
+route-map eBGP_ACL permit 10
+ match ip address 1
+ set as-path prepend 64778 64778 64778
+!
+!
+snmp-server community tMca0w@fT0ta!#* RO 60
+snmp-server community GmRbYzm2WH6b RW 60
+snmp-server community fujitsuMhLn2qZhY7 RW 53
+snmp-server community servicenow_FM8NLcPjNAFOKWJ74DgJ RO 60
+snmp-server community infoblox_ysKw1WrUXk1ZCuN9BN6M RW 60
+snmp-server packetsize 4096
+snmp-server location "Noble Park"
+snmp-server contact Fujitsu Networks Team 61 2 9776 4800
+snmp-server chassis-id T-NPA-RTR-TT-02
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps flowmon
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps license
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps bgp
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps cluster
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps energywise
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps isis
+snmp-server enable traps msdp
+snmp-server enable traps power-ethernet police
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps cpu threshold
+snmp-server enable traps rep
+snmp-server enable traps ipsla
+snmp-server enable traps vstack
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps stackwise
+snmp-server enable traps alarms informational
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server enable traps errdisable
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server host 192.168.206.83 GmRbYzm2WH6b 
+snmp-server host 137.172.146.181 version 2c fujitsuMhLn2qZhY7 
+snmp-server host 10.147.26.102 infoblox_ysKw1WrUXk1ZCuN9BN6M 
+snmp-server host 150.45.152.8 infoblox_ysKw1WrUXk1ZCuN9BN6M 
+snmp-server host 192.168.206.150 servicenow_FM8NLcPjNAFOKWJ74DgJ 
+snmp-server host 192.168.206.250 servicenow_FM8NLcPjNAFOKWJ74DgJ 
+snmp-server host 192.168.206.207 tMca0w@fT0ta!#* 
+snmp-server host 192.168.208.107 tMca0w@fT0ta!#* 
+tacacs-server host 137.172.156.75 key 7 10731D0F1042410E353B1D6C0E
+tacacs-server host 137.172.147.92 key 7 10731D0F1042410E353B1D6C0E
+!
+!
+!
+no vstack
+privilege exec level 10 show configuration
+privilege exec level 10 show
+banner exec 
+#######################################################################
+#                                                                     #
+#  All changes to this device must be done under an approved Change   #
+#  Request and reference the Ticket process.                          #
+#                                                                     #
+#######################################################################
+
+banner motd 
+#######################################################################
+#                                                                     #
+#                Restricted Access Warning Message                    #
+#                                                                     #
+#               Access to this service is for Fujitsu                 #
+#                       authorised users Only                         #
+#                                                                     #
+#   Unauthorised access beyond this point is prohibited. It is a      #
+#   criminal offence to obtain access to data without authority,      #
+#   or to damage, delete, alter or insert data without authority.     #
+#                                                                     #
+#   Breaches of the law regarding unauthorised access are subject     #
+#   to heavy penalties, including imprisonment for up to 10 years.    #
+#                                                                     #
+#   Information and other content contained within this service       #
+#   is Commercial-in-Confidence for authorised users only. No one     #
+#   else may read, print, copy or store or deal with in any way       #
+#   any information or other content contained within this service.   #
+#                                                                     #
+#######################################################################
+
+!
+line con 0
+ exec-timeout 30 0
+ privilege level 15
+line vty 0 4
+ exec-timeout 30 0
+ transport input ssh
+line vty 5 15
+ access-class NEW_VTY in
+ exec-timeout 15 0
+ privilege level 15
+ transport input ssh
+ transport output none
+!
+ntp server 132.147.22.1 prefer
+ntp server 150.45.152.129
+end

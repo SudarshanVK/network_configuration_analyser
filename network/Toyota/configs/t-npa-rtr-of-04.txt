@@ -1,0 +1,1175 @@
+version 16.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+!
+hostname T-NPA-RTR-OF-04
+!
+boot-start-marker
+boot system flash bootflash:isr4300-universalk9.16.03.06.SPA.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 1000000
+enable secret 5 <removed>
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ MNSS_TAC+
+ server-private 192.168.206.84 key 7 11270A57385A210F5D1867
+!
+aaa authentication login MNSS_TAC+ group MNSS_TAC+ local
+aaa authorization exec default group MNSS_TAC+ local
+aaa accounting send stop-record authentication failure
+aaa accounting commands 1 default start-stop group MNSS_TAC+
+aaa accounting commands 15 default start-stop group MNSS_TAC+
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone AEST 10 0
+clock summer-time AEDT recurring 1 Sun Oct 2:00 1 Sun Apr 3:00
+!
+!
+!
+!
+!
+!
+ip nbar attribute-map C12015_SC11011_T05
+ attribute category net-admin
+ attribute sub-category other
+ attribute traffic-class ops-admin-mgmt
+ip nbar attribute-map C12021_SC11011
+ attribute category consumer-messaging
+ attribute sub-category other
+ip nbar attribute-map C12015_SC11014
+ attribute sub-category authentication-services
+ attribute category net-admin
+ip nbar attribute-map C12015_SC11011
+ attribute sub-category other
+ attribute category net-admin
+ip nbar attribute-map C12019_SC11019
+ attribute sub-category consumer-multimedia-messaging
+ attribute category consumer-streaming
+ip nbar attribute-map C12012_SC11011
+ attribute category other
+ attribute sub-category other
+ip nbar attribute-map C12018_SC11011
+ attribute sub-category other
+ attribute category backup-and-storage
+ip nbar attribute-map C12025_SC11011
+ attribute sub-category other
+ attribute category inter-process-rpc
+ip nbar attribute-map C12016_SC11021
+ attribute sub-category consumer-web-browsing
+ attribute category business-and-productivity-tools
+ip nbar attribute-map C12012_SC11016
+ attribute category other
+ attribute sub-category enterprise-media-conferencing
+ip nbar attribute-map C12024_SC11024
+ attribute category layer3-over-ip
+ attribute sub-category routing-protocol
+ip nbar attribute-map C12012_SC11015
+ attribute category other
+ attribute sub-category enterprise-transactional-apps
+ip nbar attribute-map C12019_SC11025
+ attribute sub-category desktop-virtualization
+ attribute category consumer-streaming
+ip nbar attribute-map C12028_SC11018_T03
+ attribute traffic-class multimedia-streaming
+ attribute category social-networking
+ attribute sub-category consumer-video-streaming
+ip nbar attribute-map C12023_SC11011
+ attribute category consumer-internet
+ attribute sub-category other
+ip nbar attribute-map C12015_SC11024
+ attribute category net-admin
+ attribute sub-category routing-protocol
+ip nbar attribute-map C12012_SC11022
+ attribute sub-category enterprise-cloud-data-storage
+ attribute category other
+ip nbar attribute-map C12024_SC11030
+ attribute category layer3-over-ip
+ attribute sub-category tunneling-protocols
+ip nbar attribute-map C12024_SC11013
+ attribute sub-category network-management
+ attribute category layer3-over-ip
+ip nbar attribute-map C12012_SC11031
+ attribute sub-category enterprise-voice-collaboration
+ attribute category other
+ip nbar attribute-map C12012_SC11030
+ attribute sub-category tunneling-protocols
+ attribute category other
+ip nbar attribute-map C12025_SC11011_T05
+ attribute category inter-process-rpc
+ attribute sub-category other
+ attribute traffic-class ops-admin-mgmt
+ip nbar attribute-map C12016_SC11014
+ attribute sub-category authentication-services
+ attribute category business-and-productivity-tools
+ip nbar attribute-map C12016_SC11015
+ attribute sub-category enterprise-transactional-apps
+ attribute category business-and-productivity-tools
+ip nbar attribute-map C12012_SC11026
+ attribute category other
+ attribute sub-category enterprise-rich-media-content
+ip nbar attribute-map C12016_SC11011
+ attribute category business-and-productivity-tools
+ attribute sub-category other
+ip nbar attribute-map C12017_SC11016_T02
+ attribute sub-category enterprise-media-conferencing
+ attribute category voice-and-video
+ attribute traffic-class multimedia-conferencing
+ip nbar attribute-map C12018_SC11028
+ attribute sub-category file-transfer
+ attribute category backup-and-storage
+ip nbar attribute-map C12028_SC11019
+ attribute sub-category consumer-multimedia-messaging
+ attribute category social-networking
+ip nbar attribute-map C12012_SC11011_T01
+ attribute sub-category other
+ attribute traffic-class bulk-data
+ attribute category other
+ip nbar attribute-map C12013_SC11011_T01
+ attribute category browsing
+ attribute sub-category other
+ attribute traffic-class bulk-data
+ip nbar attribute-map C12017_SC11031_T09
+ attribute category voice-and-video
+ attribute sub-category enterprise-voice-collaboration
+ attribute traffic-class voip-telephony
+!
+ip nbar custom Cardax transport tcp id 18488
+ ip address 132.147.40.230
+ port 1072
+ direction any
+ip nbar custom GTOPAS-IP transport tcp id 24291
+ ip address 10.14.206.184
+ port 80
+ direction any
+ip nbar custom proxy18080 transport tcp id 416
+ ip address 10.14.206.26
+ port 18080
+ direction any
+ip nbar custom proxy8080 transport tcp id 34662
+ ip address 10.14.206.26
+ port 8080
+ direction any
+ip nbar custom Portal-threatpulse-com80 transport tcp id 1749
+ ip address 199.19.250.192
+ port 80
+ direction any
+ip nbar custom proxythreatpulsecom80 transport tcp id 43995
+ ip address 103.246.36.164
+ port 80
+ direction any
+ip nbar custom proxythreatpulsecom443 transport tcp id 62126
+ ip address 103.246.36.164
+ port 443
+ direction any
+ip nbar custom Portalthreatpulsecom443 transport tcp id 10523
+ ip address 199.19.250.192
+ port 443
+ direction any
+ip nbar custom Proxythreatpulsenet8080 transport tcp id 19631
+ ip address 103.246.36.164
+ port 8080
+ direction any
+!
+ip nbar attribute-set netflow C12015_SC11011_T05
+ip nbar attribute-set ipfix C12015_SC11011_T05
+ip nbar attribute-set kakao-services C12021_SC11011
+ip nbar attribute-set qq-services C12021_SC11011
+ip nbar attribute-set ocsp C12015_SC11014
+ip nbar attribute-set ipv6-icmp C12015_SC11011
+ip nbar attribute-set gbridge C12019_SC11019
+ip nbar attribute-set wikipedia C12012_SC11011
+ip nbar attribute-set rsync C12018_SC11011
+ip nbar attribute-set mfcobol C12025_SC11011
+ip nbar attribute-set hl7 C12025_SC11011
+ip nbar attribute-set dicom C12025_SC11011
+ip nbar attribute-set orbix-cfg-ssl C12025_SC11011
+ip nbar attribute-set corba-iiop-ssl C12025_SC11011
+ip nbar attribute-set pearson C12016_SC11021
+ip nbar attribute-set google-services-audio C12012_SC11016
+ip nbar attribute-set socks C12024_SC11024
+ip nbar attribute-set ssl C12012_SC11015
+ip nbar attribute-set http C12012_SC11015
+ip nbar attribute-set quic C12012_SC11015
+ip nbar attribute-set spdy C12012_SC11015
+ip nbar attribute-set https C12012_SC11015
+ip nbar attribute-set pcanywhere C12019_SC11025
+ip nbar attribute-set gotomypc C12019_SC11025
+ip nbar attribute-set logmein C12019_SC11025
+ip nbar attribute-set gotodevice C12019_SC11025
+ip nbar attribute-set showmypc C12019_SC11025
+ip nbar attribute-set facebook-video C12028_SC11018_T03
+ip nbar attribute-set secure-nntp C12023_SC11011
+ip nbar attribute-set apple-services C12023_SC11011
+ip nbar attribute-set nntp C12023_SC11011
+ip nbar attribute-set tcpoverdns C12023_SC11011
+ip nbar attribute-set google-earth C12023_SC11011
+ip nbar attribute-set pnni C12015_SC11024
+ip nbar attribute-set idrp C12015_SC11024
+ip nbar attribute-set igrp C12015_SC11024
+ip nbar attribute-set vrrp C12015_SC11024
+ip nbar attribute-set pim C12015_SC11024
+ip nbar attribute-set idpr C12015_SC11024
+ip nbar attribute-set sdrp C12015_SC11024
+ip nbar attribute-set windows-azure C12012_SC11022
+ip nbar attribute-set amazon-web-services C12012_SC11022
+ip nbar attribute-set l2tp C12024_SC11030
+ip nbar attribute-set openvpn C12024_SC11030
+ip nbar attribute-set ipsec C12024_SC11030
+ip nbar attribute-set capwap-data C12024_SC11030
+ip nbar attribute-set checkpoint-cpmi C12024_SC11030
+ip nbar attribute-set tinc C12024_SC11030
+ip nbar attribute-set teredo-ipv6-tunneled C12024_SC11030
+ip nbar attribute-set sixtofour-ipv6-tunneled C12024_SC11030
+ip nbar attribute-set pptp C12024_SC11030
+ip nbar attribute-set stun-nat C12024_SC11013
+ip nbar attribute-set at-7 C12024_SC11013
+ip nbar attribute-set at-8 C12024_SC11013
+ip nbar attribute-set at-3 C12024_SC11013
+ip nbar attribute-set at-5 C12024_SC11013
+ip nbar attribute-set isatap-ipv6-tunneled C12024_SC11013
+ip nbar attribute-set ayiya-ipv6-tunneled C12024_SC11013
+ip nbar attribute-set web-rtc C12012_SC11031
+ip nbar attribute-set google-services-video C12012_SC11031
+ip nbar attribute-set itunes-media C12012_SC11031
+ip nbar attribute-set web-rtc-video C12012_SC11031
+ip nbar attribute-set google-services-media C12012_SC11031
+ip nbar attribute-set web-rtc-audio C12012_SC11031
+ip nbar attribute-set gtp-user C12012_SC11030
+ip nbar attribute-set wifi-calling C12012_SC11030
+ip nbar attribute-set nsiiops C12025_SC11011_T05
+ip nbar attribute-set gss-http C12016_SC11014
+ip nbar attribute-set jabber C12016_SC11015
+ip nbar attribute-set ssl-local-net C12016_SC11015
+ip nbar attribute-set http-local-net C12016_SC11015
+ip nbar attribute-set flash-video C12012_SC11026
+ip nbar attribute-set audio-over-http C12012_SC11026
+ip nbar attribute-set shockwave C12012_SC11026
+ip nbar attribute-set video-over-http C12012_SC11026
+ip nbar attribute-set avast-antivirus C12016_SC11011
+ip nbar attribute-set mcafee-antivirus C12016_SC11011
+ip nbar attribute-set ipass C12016_SC11011
+ip nbar attribute-set fix C12016_SC11011
+ip nbar attribute-set synergy C12016_SC11011
+ip nbar attribute-set conference-server C12017_SC11016_T02
+ip nbar attribute-set gsiftp C12018_SC11028
+ip nbar attribute-set microsoftds C12018_SC11028
+ip nbar attribute-set cifs C12018_SC11028
+ip nbar attribute-set tftp C12018_SC11028
+ip nbar attribute-set nfs C12018_SC11028
+ip nbar attribute-set gridftp C12018_SC11028
+ip nbar attribute-set facebook-audio C12028_SC11019
+ip nbar attribute-set facebook-media C12028_SC11019
+ip nbar attribute-set Cardax C12012_SC11011_T01
+ip nbar attribute-set proxy18080 C12013_SC11011_T01
+ip nbar attribute-set GTOPAS-IP C12017_SC11031_T09
+ip nbar attribute-set proxy8080 C12012_SC11011_T01
+ip nbar attribute-set Portal-threatpulse-com80 C12013_SC11011_T01
+ip nbar attribute-set proxythreatpulsecom80 C12013_SC11011_T01
+ip nbar attribute-set proxythreatpulsecom443 C12013_SC11011_T01
+ip nbar attribute-set Portalthreatpulsecom443 C12013_SC11011_T01
+ip nbar attribute-set Proxythreatpulsenet8080 C12013_SC11011_T01
+!
+ip name-server 150.45.153.38 150.45.156.38
+no ip domain lookup
+ip domain name tmca.com.au
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+!
+!
+multilink bundle-name authenticated
+!
+domain ONE
+ vrf default
+  master hub
+   source-interface Loopback47233
+   site-prefixes prefix-list DC-PREFIX
+   load-balance
+   enterprise-prefix  prefix-list ENTERPRISE-PREFIXES
+   collector 132.147.22.30 port 9991
+   class file-sharing sequence 10
+    match application binary-over-http policy bulk-data
+    match application ftps-data policy bulk-data
+    match application ftp policy bulk-data
+    match application ftp-data policy bulk-data
+    path-preference Telstra fallback Optus
+   class backup-and-storage sequence 20
+    match application nfs policy bulk-data
+    match application crashplan policy bulk-data
+    match application backup-service policy bulk-data
+    match application tftp policy bulk-data
+    match application cifs policy bulk-data
+    path-preference Optus fallback Telstra
+   class business-and-productivity-tools sequence 30
+    match application jabber policy low-latency-data
+    match application vnc-http policy low-latency-data
+    match application vnc policy low-latency-data
+    match application salesforce policy low-latency-data
+    match application vmware-vmotion policy low-latency-data
+    match application ipass policy scavenger
+    match application sap policy low-latency-data
+    match application http-local-net policy low-latency-data
+    match application citrix policy low-latency-data
+    match application ssl-local-net policy low-latency-data
+    match application avast-antivirus policy scavenger
+    match application apple-remote-desktop policy low-latency-data
+    match application ms-dynamics-crm-online policy low-latency-data
+    match application citrix-audio policy low-latency-data
+    match application mcafee-antivirus policy scavenger
+    match application box policy bulk-data
+    match application hp-pdl-datastr policy low-latency-data
+    match application ms-office-web-apps policy low-latency-data
+    match application pcoip policy low-latency-data
+    match application ms-office-365 policy low-latency-data
+    match application oracle-ebsuite-unsecured policy low-latency-data
+    match application vmware-vsphere policy low-latency-data
+    match application share-point policy low-latency-data
+    match application clearcase policy low-latency-data
+    match application ms-wbt policy low-latency-data
+    match application vmware-view policy low-latency-data
+    path-preference Telstra fallback Optus
+   class net-admin sequence 40
+    match application ldap policy low-latency-data
+    match application ospf policy low-latency-data
+    match application netbios-ns policy best-effort
+    match application snmp policy low-latency-data
+    match application active-directory policy low-latency-data
+    match application ms-netlogon policy low-latency-data
+    match application telnet policy low-latency-data
+    match application netflow policy scavenger
+    match application ping policy low-latency-data
+    match application ipv6-icmp policy scavenger
+    match application ipfix policy scavenger
+    match application ntp policy low-latency-data
+    match application auth-service policy low-latency-data
+    match application dhcp policy low-latency-data
+    match application ssh policy low-latency-data
+    match application kerberos policy low-latency-data
+    match application ms-win-dns policy best-effort
+    match application bgp policy low-latency-data
+    match application dns policy best-effort
+    match application cisco-rtmt policy low-latency-data
+    path-preference Telstra fallback Optus
+   class other sequence 50
+    match application quic policy low-latency-data
+    match application itunes-media policy voice
+    match application google-services-media policy voice
+    match application wifi-calling policy low-latency-data
+    match application google-services-audio policy real-time-video
+    match application unknown policy scavenger
+    match application mcafee-update policy scavenger
+    match application statistical-conf-video policy scavenger
+    match application audio-over-http policy best-effort
+    match application proxy-server policy scavenger
+    match application http policy low-latency-data
+    match application ssl policy low-latency-data
+    match application flash-video policy best-effort
+    match application statistical-p2p policy scavenger
+    match application spdy policy low-latency-data
+    match application google-services-video policy voice
+    match application Cardax policy scavenger
+    match application web-rtc-video policy voice
+    match application proxy8080 policy scavenger
+    match application statistical-download policy scavenger
+    match application wikipedia policy scavenger
+    match application video-over-http policy best-effort
+    match application web-rtc policy voice
+    match application google-services policy scavenger
+    match application statistical-conf-audio policy scavenger
+    match application web-rtc-audio policy voice
+    path-preference Optus fallback Telstra
+   class email sequence 60
+    match application mail-service policy low-latency-data
+    match application mapi policy low-latency-data
+    match application pop3 policy low-latency-data
+    match application outlook-web-service policy low-latency-data
+    match application exchange policy low-latency-data
+    match application lotus-notes policy scavenger
+    match application imap policy low-latency-data
+    match application smtp policy low-latency-data
+    match application secure-imap policy low-latency-data
+    path-preference Telstra fallback Optus
+   class database sequence 70
+    match application sqlserver policy low-latency-data
+    match application mysql policy low-latency-data
+    match application db-service policy low-latency-data
+    match application cassandra policy low-latency-data
+    match application mongo policy low-latency-data
+    match application oracle-sqlnet policy low-latency-data
+    path-preference Telstra fallback Optus
+   class inter-process-rpc sequence 80
+    match application sunrpc policy low-latency-data
+    match application ms-iis policy low-latency-data
+    match application ms-rpc policy low-latency-data
+    path-preference Telstra fallback Optus
+   class voice-and-video sequence 90
+    match application cisco-jabber-audio policy voice
+    match application cisco-spark-video policy voice
+    match application cisco-phone-control policy low-latency-data
+    match application webex-meeting policy real-time-video
+    match application rtp-audio policy real-time-video
+    match application sip policy low-latency-data
+    match application jabber-video policy real-time-video
+    match application conference-server policy real-time-video
+    match application sip-tls policy low-latency-data
+    match application cisco-spark-media policy voice
+    match application webex-app-sharing policy real-time-video
+    match application cisco-spark-audio policy real-time-video
+    match application dmp policy real-time-video
+    match application cisco-ip-camera policy real-time-video
+    match application cisco-collaboration policy real-time-video
+    match application cisco-phone-video policy real-time-video
+    match application cisco-collab-control policy low-latency-data
+    match application rtp-video policy voice
+    match application h323 policy low-latency-data
+    match application cisco-phone policy voice
+    match application ms-lync-video policy real-time-video
+    match application isakmp policy low-latency-data
+    match application conferencing policy voice
+    match application cisco-collab-video policy real-time-video
+    match application cisco-collab-audio policy voice
+    match application ms-lync-control policy low-latency-data
+    match application cisco-jabber-video policy real-time-video
+    match application jabber-audio policy voice
+    match application telepresence-media policy real-time-video
+    match application rtsp policy low-latency-data
+    match application cisco-media-video policy voice
+    match application cisco-jabber-control policy low-latency-data
+    match application ms-lync-audio policy voice
+    match application skinny policy low-latency-data
+    match application cisco-phone-media policy voice
+    match application telepresence-control policy low-latency-data
+    match application webex-media policy real-time-video
+    match application cisco-jabber-im policy real-time-video
+    match application ms-lync policy real-time-video
+    match application rtcp policy low-latency-data
+    match application GTOPAS-IP policy voice
+    match application cisco-media-audio policy voice
+    match application cisco-spark policy real-time-video
+    match application cisco-phone-audio policy voice
+    match application telepresence-audio policy real-time-video
+    match application rtp policy voice
+    path-preference Telstra fallback Optus
+   class software-updates sequence 100
+    match application ms-update policy bulk-data
+    match application android-updates policy bulk-data
+    match application windows-store policy scavenger
+    match application ms-sms policy low-latency-data
+    match application google-play policy scavenger
+    match application apple-ios-updates policy bulk-data
+    match application apple-app-store policy scavenger
+    match application mac-os-x-updates policy bulk-data
+    match application apple-tv-updates policy bulk-data
+    path-preference Telstra fallback Optus
+   class browsing sequence 110
+    match application htc-services policy scavenger
+    match application Portalthreatpulsecom443 policy scavenger
+    match application Proxythreatpulsenet8080 policy scavenger
+    match application proxythreatpulsecom443 policy scavenger
+    match application Portal-threatpulse-com80 policy scavenger
+    match application proxythreatpulsecom80 policy scavenger
+    match application proxy18080 policy scavenger
+    path-preference Telstra fallback Optus
+!
+!
+crypto pki trustpoint sdn-network-infra-iwan
+ enrollment url http://132.147.22.33:80/ejbca/publicweb/apply/scep/sdnscep
+ fqdn T-NPA-RTR-OF-04.tmca.com.au
+ subject-name CN=ISR4331/K9_FDO2041A1QV_sdn-network-infra-iwan
+ revocation-check crl
+ rsakeypair sdn-network-infra-iwan
+ auto-enroll 80 regenerate
+!
+!
+crypto pki certificate chain sdn-network-infra-iwan
+ certificate 46D0C78B2092A0D4
+  30820384 3082026C A0030201 02020846 D0C78B20 92A0D430 0D06092A 864886F7
+  0D01010D 0500301F 311D301B 06035504 030C1473 646E2D6E 6574776F 726B2D69
+  6E667261 2D636130 1E170D32 30303131 31313833 3035395A 170D3231 30313130
+  31383330 35395A30 64312A30 2806092A 864886F7 0D010902 0C1B542D 4E50412D
+  5254522D 4F462D30 342E746D 63612E63 6F6D2E61 75313630 34060355 04030C2D
+  49535234 3333312F 4B395F46 444F3230 34314131 51565F73 646E2D6E 6574776F
+  726B2D69 6E667261 2D697761 6E308201 22300D06 092A8648 86F70D01 01010500
+  0382010F 00308201 0A028201 0100ADCF C43D40AB A49BED32 A3AB87DB 042D21EA
+  C5DA072B 73E4098C 90C5D212 0C295329 FAF97F2B 08FB1A16 E9882767 3D5B9214
+  75D68F9E 6C1A402A F69BAEDD D31E1098 38477ED3 3A55EE2D F5E73AD7 1FF46BE8
+  805A1668 C0770466 21E60355 A6C14632 CE4E757B AE2E2809 0287D047 FC3E69C7
+  57E35B11 D0419E2A 1231E7B2 ABC68AF5 3ED40043 1122A143 A07B7BF4 770348DF
+  0F2F3AF5 742EDFE6 D64DB996 4A0A52FE D2A5B6E2 C113CB54 AC0802AC A6507C37
+  40B43912 859AB0A0 462A3F09 7B9BE37A 1D1A5505 67819AB4 EC35386C 1281EE45
+  D84E955A 748E1F8A 1FFF4F1E 417F0114 F2D2F393 96DC8050 05E702B3 56170EF3
+  B8073884 BD250E88 15A60B55 26130203 010001A3 7F307D30 1D060355 1D0E0416
+  0414135F A451E2D7 9E7D754D 8D12F91D C338172B B4DE300C 0603551D 130101FF
+  04023000 301F0603 551D2304 18301680 14E0137C AA292C46 E0D8B411 D5C18F73
+  12E40BFF D1300E06 03551D0F 0101FF04 04030205 E0301D06 03551D25 04163014
+  06082B06 01050507 03020608 2B060105 05070304 300D0609 2A864886 F70D0101
+  0D050003 82010100 6B34A5AE A857632B 588C3BD4 F4105CDA 0061D3BB 9794B38A
+  F79F376E 7088348E 18A1DDFC 6BE5E4E5 3F642635 12DCEDDC 8A160194 8A0693D5
+  6466EB20 7C8A2B78 1EFA6FB3 92F61C99 5BBDB713 70CE89AF 4B63453F A271108D
+  4FAC2360 0878E038 765AAD47 26D595AB B0C99DAA 89045C24 21DF2634 AD6564AE
+  E8DB337E 80AA9D7E A99C356D 10B21728 6846A84B CAC08B87 9D3D2B26 DD7CF787
+  5762A11A EDF7F61E 25BC8528 484AB61E C2B1F2F7 34939546 BE903548 AA794B6B
+  EA932058 1F0DACEC 8E9B2EB3 17072E39 FB3262E4 2EADBDAD AEF129B9 C8491A94
+  2733412A 9CF2D939 3E703E5E 08670D38 192C567E DA638EF1 680A78F7 198C932C
+  2CBBC3D8 4B78B89C
+  	quit
+ certificate ca 26B380A0EB22D00B
+  30820323 3082020B A0030201 02020826 B380A0EB 22D00B30 0D06092A 864886F7
+  0D01010D 0500301F 311D301B 06035504 030C1473 646E2D6E 6574776F 726B2D69
+  6E667261 2D636130 1E170D31 37303531 38313334 3535315A 170D3232 30353137
+  31333435 35315A30 1F311D30 1B060355 04030C14 73646E2D 6E657477 6F726B2D
+  696E6672 612D6361 30820122 300D0609 2A864886 F70D0101 01050003 82010F00
+  3082010A 02820101 00C6B651 4A9E6DE4 E3A6B020 2BAAB7D0 9C0B033C D5F98589
+  2FC8E4B8 D4BE20D0 20CF8605 8F8DDA9E 45EEED6E E4C69046 22190DD2 35CAC3A0
+  DCDD4AEE A672BECF 364F50C0 201BED4D ED7B1930 F05EFA72 29E232C4 ACB45BA5
+  DC2ADDA8 4F27C4CD C40C7CF6 AC60DC9E 574F94DC 1CCB8100 87BFE776 6C398D8B
+  DB2FC9BA 4183FAF8 33EF57C0 6535F420 985E7BF1 65AAAEB1 02B3516F 6C2FE528
+  AC42944B D49015B9 6AC18AFC CB0172AF 79365F1F 66C022F8 B7FC11F9 FE31DC7F
+  5C87A37F BE842C9F F3029771 D8F85C5F F24C439E 3BB1DD13 DA4F949A 0A90D38D
+  CB96C99C 99B982E7 C312A3B0 289634E5 6899F9D7 A18AD86E 11584C3E 07DA993A
+  00BBA0CB A47018B8 9D020301 0001A363 3061301D 0603551D 0E041604 14E0137C
+  AA292C46 E0D8B411 D5C18F73 12E40BFF D1300F06 03551D13 0101FF04 05300301
+  01FF301F 0603551D 23041830 168014E0 137CAA29 2C46E0D8 B411D5C1 8F7312E4
+  0BFFD130 0E060355 1D0F0101 FF040403 02018630 0D06092A 864886F7 0D01010D
+  05000382 010100AE 61B905E9 FFA2D261 B7988322 AB0C6E24 02BEDB79 D1244A3C
+  89419DE6 75176230 08A66795 D8AB0C92 9247928C 2AA01342 9BFC2AA5 1AC81DF2
+  20757389 A3827AA0 3F1E32BE 45F3870F 11926324 E9B8A464 863A352B B74B82C1
+  260E13E4 43DFE2FD 9DFF8DF4 6AD25C02 736FEDA9 A765658A E98AEA01 56A0AA62
+  618FBC29 4585DF53 C03084E7 55636445 4B935F27 E517EFE8 4EC5E6C4 9134DC2B
+  B0DFFA78 2852A5EC 9060B80F 6F457AB9 953E58D9 FB5393A2 EF785016 6B5BF576
+  0A19243E D0B1774A AB23DFF8 C6BA1C49 C37B3C72 679E75C8 262BCA6F A2AFD44B
+  5BE11E4C D37FE777 E64B2718 E9082210 93864D06 F8E75A3B FB009B01 008F0825
+  F766B2FA 523CDE
+  	quit
+!
+crypto pki crl download schedule prepublish 2760
+crypto pki crl download schedule retries 15
+crypto pki crl download schedule retries interval 180
+crypto pki crl download trustpoint sdn-network-infra-iwan
+license udi pid ISR4331/K9 sn FDO20400Z0C
+license accept end user agreement
+license boot suite FoundationSuiteK9
+license boot level appxk9
+archive
+ log config
+  logging enable
+  hidekeys
+!
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+<username removed>
+!
+redundancy
+ mode none
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback10
+ description General Loopback
+ ip address 10.100.0.13 255.255.255.255
+!
+interface Loopback47233
+ ip address 10.100.2.67 255.255.255.255
+ ip pim sparse-mode
+!
+interface Port-channel1
+ description Link to TOYNOBSR01
+ ip address 172.21.231.245 255.255.255.240
+ ip ospf message-digest-key 1 md5 7 014140574F3F3C54136B4B
+ no negotiation auto
+!
+interface GigabitEthernet0/0/0
+ description Link to TOYNOBSR01-1
+ no ip address
+ negotiation auto
+ channel-group 1 mode active
+!
+interface GigabitEthernet0/0/1
+ description Link to TOYNOBSR01-2
+ no ip address
+ negotiation auto
+ channel-group 1 mode active
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ negotiation auto
+!
+router ospf 500
+ router-id 10.100.2.67
+ network 10.100.0.13 0.0.0.0 area 0
+ network 10.100.2.67 0.0.0.0 area 0
+ network 172.21.231.240 0.0.0.15 area 0
+!
+ip forward-protocol nd
+ip pim register-source Loopback47233
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 172.21.231.241 170 name Floating-Core
+!
+ip ssh source-interface Loopback47233
+ip ssh version 2
+ip scp server enable
+!
+ip access-list standard NEW_VTY
+ permit 132.147.11.17
+ permit 10.10.10.42
+ permit 132.147.22.32
+ permit 132.147.22.35
+ permit 132.147.22.34
+ permit 10.10.10.46
+ permit 132.147.22.36
+ permit 150.45.152.8
+ permit 132.147.11.33
+ permit 192.168.206.7
+ permit 192.168.206.10
+ permit 10.147.26.102
+ permit 192.168.206.84
+ permit 192.168.206.83
+ permit 137.172.146.160 0.0.0.31
+ permit 137.172.148.24 0.0.0.7
+ deny   any log
+ip access-list standard VTY_ACCESS_IN
+ permit 150.45.152.8
+ permit 10.147.26.102
+!
+!
+!
+ip prefix-list DC-PREFIX seq 5 permit 10.50.10.0/24
+ip prefix-list DC-PREFIX seq 10 permit 10.14.208.0/24
+ip prefix-list DC-PREFIX seq 15 permit 203.52.1.0/24
+ip prefix-list DC-PREFIX seq 20 permit 10.40.2.0/24
+ip prefix-list DC-PREFIX seq 25 permit 150.45.247.16/28
+ip prefix-list DC-PREFIX seq 30 permit 192.168.112.0/20
+ip prefix-list DC-PREFIX seq 35 permit 137.172.70.119/32
+ip prefix-list DC-PREFIX seq 40 permit 172.27.177.0/24
+ip prefix-list DC-PREFIX seq 45 permit 10.40.4.0/24
+ip prefix-list DC-PREFIX seq 50 permit 10.40.1.72/32
+ip prefix-list DC-PREFIX seq 55 permit 203.41.188.96/29
+ip prefix-list DC-PREFIX seq 60 permit 10.10.10.0/24
+ip prefix-list DC-PREFIX seq 65 permit 10.100.0.10/32
+ip prefix-list DC-PREFIX seq 70 permit 10.40.3.0/24
+ip prefix-list DC-PREFIX seq 75 permit 137.172.9.0/24
+ip prefix-list DC-PREFIX seq 80 permit 10.100.0.8/32
+ip prefix-list DC-PREFIX seq 85 permit 172.21.15.0/24
+ip prefix-list DC-PREFIX seq 90 permit 194.117.106.128/30
+ip prefix-list DC-PREFIX seq 95 permit 203.52.0.192/28
+ip prefix-list DC-PREFIX seq 100 permit 129.42.42.224/32
+ip prefix-list DC-PREFIX seq 105 permit 192.168.0.0/18
+ip prefix-list DC-PREFIX seq 110 permit 150.45.247.192/26
+ip prefix-list DC-PREFIX seq 115 permit 172.16.51.20/32
+ip prefix-list DC-PREFIX seq 120 permit 10.146.0.0/16
+ip prefix-list DC-PREFIX seq 125 permit 192.168.2.0/25
+ip prefix-list DC-PREFIX seq 130 permit 144.130.7.5/32
+ip prefix-list DC-PREFIX seq 135 permit 203.52.1.192/28
+ip prefix-list DC-PREFIX seq 140 permit 172.27.178.0/24
+ip prefix-list DC-PREFIX seq 145 permit 137.172.22.0/24
+ip prefix-list DC-PREFIX seq 150 permit 172.29.213.0/24
+ip prefix-list DC-PREFIX seq 155 permit 147.76.18.0/24
+ip prefix-list DC-PREFIX seq 160 permit 192.168.110.0/23
+ip prefix-list DC-PREFIX seq 165 permit 129.42.160.48/32
+ip prefix-list DC-PREFIX seq 170 permit 172.27.19.0/24
+ip prefix-list DC-PREFIX seq 175 permit 137.172.255.136/29
+ip prefix-list DC-PREFIX seq 180 permit 192.168.107.0/24
+ip prefix-list DC-PREFIX seq 185 permit 150.45.152.0/25
+ip prefix-list DC-PREFIX seq 190 permit 172.27.18.0/24
+ip prefix-list DC-PREFIX seq 195 permit 172.21.152.0/22
+ip prefix-list DC-PREFIX seq 200 permit 10.100.0.7/32
+ip prefix-list DC-PREFIX seq 205 permit 132.147.22.0/24
+ip prefix-list DC-PREFIX seq 210 permit 150.45.154.0/24
+ip prefix-list DC-PREFIX seq 215 permit 207.25.252.200/32
+ip prefix-list DC-PREFIX seq 220 permit 172.16.10.0/24
+ip prefix-list DC-PREFIX seq 225 permit 192.168.1.0/25
+ip prefix-list DC-PREFIX seq 230 permit 192.168.2.128/25
+ip prefix-list DC-PREFIX seq 235 permit 172.21.231.144/28
+ip prefix-list DC-PREFIX seq 240 permit 172.21.231.240/28
+ip prefix-list DC-PREFIX seq 245 permit 203.8.5.64/27
+ip prefix-list DC-PREFIX seq 250 permit 10.100.0.1/32
+ip prefix-list DC-PREFIX seq 255 permit 10.100.0.11/32
+ip prefix-list DC-PREFIX seq 260 permit 192.168.1.128/25
+ip prefix-list DC-PREFIX seq 265 permit 10.80.0.0/13
+ip prefix-list DC-PREFIX seq 270 permit 137.172.10.0/24
+ip prefix-list DC-PREFIX seq 275 permit 207.25.252.205/32
+ip prefix-list DC-PREFIX seq 280 permit 192.168.96.0/21
+ip prefix-list DC-PREFIX seq 285 permit 172.16.1.0/30
+ip prefix-list DC-PREFIX seq 290 permit 10.100.0.2/32
+ip prefix-list DC-PREFIX seq 295 permit 10.20.20.0/24
+ip prefix-list DC-PREFIX seq 300 permit 144.130.4.5/32
+ip prefix-list DC-PREFIX seq 305 permit 192.168.64.0/19
+ip prefix-list DC-PREFIX seq 310 permit 10.100.0.5/32
+ip prefix-list DC-PREFIX seq 315 permit 10.50.1.0/24
+ip prefix-list DC-PREFIX seq 320 permit 203.19.140.48/28
+ip prefix-list DC-PREFIX seq 325 permit 192.168.128.0/17
+ip prefix-list DC-PREFIX seq 330 permit 161.95.0.0/16
+ip prefix-list DC-PREFIX seq 335 permit 202.2.60.0/22
+ip prefix-list DC-PREFIX seq 340 permit 137.172.148.0/24
+ip prefix-list DC-PREFIX seq 345 permit 137.172.146.160/27
+ip prefix-list DC-PREFIX seq 350 permit 203.5.103.88/32
+ip prefix-list DC-PREFIX seq 355 permit 192.168.208.0/24
+ip prefix-list DC-PREFIX seq 360 permit 10.40.1.29/32
+ip prefix-list DC-PREFIX seq 365 permit 129.180.10.0/24
+ip prefix-list DC-PREFIX seq 370 permit 132.147.0.0/16
+ip prefix-list DC-PREFIX seq 375 permit 203.75.88.0/24
+ip prefix-list DC-PREFIX seq 380 permit 10.1.80.0/20
+ip prefix-list DC-PREFIX seq 385 permit 172.21.231.8/29
+ip prefix-list DC-PREFIX seq 390 permit 132.147.31.0/26
+ip prefix-list DC-PREFIX seq 395 permit 172.21.93.0/24
+ip prefix-list DC-PREFIX seq 400 permit 172.21.231.200/30
+ip prefix-list DC-PREFIX seq 405 permit 172.21.84.0/23
+ip prefix-list DC-PREFIX seq 410 permit 192.168.109.0/24
+ip prefix-list DC-PREFIX seq 415 permit 137.172.21.0/24
+ip prefix-list DC-PREFIX seq 420 permit 192.168.13.0/24
+ip prefix-list DC-PREFIX seq 425 permit 172.21.86.0/24
+ip prefix-list DC-PREFIX seq 430 permit 203.52.0.0/24
+ip prefix-list DC-PREFIX seq 435 permit 132.147.11.48/29
+ip prefix-list DC-PREFIX seq 440 permit 161.94.0.0/16
+ip prefix-list DC-PREFIX seq 445 permit 192.168.10.0/25
+ip prefix-list DC-PREFIX seq 450 permit 172.21.92.0/24
+ip prefix-list DC-PREFIX seq 455 permit 137.172.68.3/32
+ip prefix-list DC-PREFIX seq 460 permit 172.21.231.224/32
+ip prefix-list DC-PREFIX seq 465 permit 10.100.0.13/32
+ip prefix-list DC-PREFIX seq 470 permit 172.21.81.0/24
+ip prefix-list DC-PREFIX seq 475 permit 172.21.231.4/30
+ip prefix-list DC-PREFIX seq 480 permit 172.16.31.0/24
+ip prefix-list DC-PREFIX seq 485 permit 10.147.28.0/23
+ip prefix-list DC-PREFIX seq 490 permit 172.21.82.0/24
+ip prefix-list DC-PREFIX seq 495 permit 150.45.156.0/24
+ip prefix-list DC-PREFIX seq 500 permit 137.172.50.0/24
+ip prefix-list DC-PREFIX seq 505 permit 137.172.35.0/24
+ip prefix-list DC-PREFIX seq 510 permit 10.40.0.0/24
+ip prefix-list DC-PREFIX seq 515 permit 172.21.231.0/30
+ip prefix-list DC-PREFIX seq 520 permit 192.168.17.0/24
+ip prefix-list DC-PREFIX seq 525 permit 172.21.90.0/24
+ip prefix-list DC-PREFIX seq 530 permit 10.100.0.3/32
+ip prefix-list DC-PREFIX seq 535 permit 10.80.0.0/16
+ip prefix-list DC-PREFIX seq 540 permit 10.100.3.0/25
+ip prefix-list DC-PREFIX seq 545 permit 192.168.10.128/25
+ip prefix-list DC-PREFIX seq 550 permit 203.0.152.0/24
+ip prefix-list DC-PREFIX seq 555 permit 172.21.0.0/16
+ip prefix-list DC-PREFIX seq 560 permit 10.100.0.6/32
+ip prefix-list DC-PREFIX seq 565 permit 150.45.150.160/27
+ip prefix-list DC-PREFIX seq 570 permit 172.21.88.0/24
+ip prefix-list DC-PREFIX seq 575 permit 10.14.206.0/24
+ip prefix-list DC-PREFIX seq 580 permit 172.21.80.0/24
+ip prefix-list DC-PREFIX seq 585 permit 150.45.150.0/24
+ip prefix-list DC-PREFIX seq 590 permit 192.168.108.0/24
+ip prefix-list DC-PREFIX seq 595 permit 10.40.1.11/32
+ip prefix-list DC-PREFIX seq 600 permit 192.168.206.0/24
+ip prefix-list DC-PREFIX seq 605 permit 10.100.3.128/25
+ip prefix-list DC-PREFIX seq 610 permit 172.21.231.225/32
+ip prefix-list DC-PREFIX seq 615 permit 10.255.254.0/24
+ip prefix-list DC-PREFIX seq 620 permit 161.93.0.0/16
+ip prefix-list DC-PREFIX seq 625 permit 172.16.51.21/32
+ip prefix-list DC-PREFIX seq 630 permit 150.44.0.0/16
+ip prefix-list DC-PREFIX seq 635 permit 129.42.26.224/32
+ip prefix-list DC-PREFIX seq 640 permit 10.40.5.0/24
+ip prefix-list DC-PREFIX seq 645 permit 137.172.127.0/24
+ip prefix-list DC-PREFIX seq 650 permit 203.42.70.224/29
+ip prefix-list DC-PREFIX seq 655 permit 203.44.43.160/29
+ip prefix-list DC-PREFIX seq 660 permit 10.9.100.0/24
+ip prefix-list DC-PREFIX seq 665 permit 10.147.0.0/16
+ip prefix-list DC-PREFIX seq 670 permit 150.45.152.128/25
+ip prefix-list DC-PREFIX seq 675 permit 150.45.172.0/25
+ip prefix-list DC-PREFIX seq 680 permit 203.44.186.192/27
+ip prefix-list DC-PREFIX seq 685 permit 150.45.0.0/16
+ip prefix-list DC-PREFIX seq 690 permit 129.42.160.50/32
+ip prefix-list DC-PREFIX seq 695 permit 203.52.0.160/29
+ip prefix-list DC-PREFIX seq 700 permit 161.96.0.0/16
+ip prefix-list DC-PREFIX seq 705 permit 137.172.20.41/32
+ip prefix-list DC-PREFIX seq 710 permit 10.100.0.12/32
+ip prefix-list DC-PREFIX seq 715 permit 137.172.37.4/32
+ip prefix-list DC-PREFIX seq 720 permit 110.142.226.118/32
+ip prefix-list DC-PREFIX seq 725 permit 172.21.231.128/28
+ip prefix-list DC-PREFIX seq 730 permit 10.105.0.0/16
+ip prefix-list DC-PREFIX seq 735 permit 9.9.9.8/30
+ip prefix-list DC-PREFIX seq 740 permit 10.60.1.0/24
+ip prefix-list DC-PREFIX seq 745 permit 129.42.34.224/32
+ip prefix-list DC-PREFIX seq 750 permit 137.172.51.0/24
+!
+ip prefix-list ENTERPRISE-PREFIXES seq 5 permit 9.9.9.8/30
+ip prefix-list ENTERPRISE-PREFIXES seq 10 permit 129.42.34.224/32
+ip prefix-list ENTERPRISE-PREFIXES seq 15 permit 203.41.188.96/29
+ip prefix-list ENTERPRISE-PREFIXES seq 20 permit 207.25.252.205/32
+ip prefix-list ENTERPRISE-PREFIXES seq 25 permit 203.75.88.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 30 permit 144.130.4.5/32
+ip prefix-list ENTERPRISE-PREFIXES seq 35 permit 161.94.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 40 permit 144.130.7.5/32
+ip prefix-list ENTERPRISE-PREFIXES seq 45 permit 150.44.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 50 permit 147.76.18.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 55 permit 137.172.21.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 60 permit 132.147.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 65 permit 161.96.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 70 permit 203.42.70.224/29
+ip prefix-list ENTERPRISE-PREFIXES seq 75 permit 10.147.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 80 permit 137.172.20.41/32
+ip prefix-list ENTERPRISE-PREFIXES seq 85 permit 203.19.140.48/28
+ip prefix-list ENTERPRISE-PREFIXES seq 90 permit 137.172.255.136/29
+ip prefix-list ENTERPRISE-PREFIXES seq 95 permit 129.42.26.224/32
+ip prefix-list ENTERPRISE-PREFIXES seq 100 permit 137.172.146.160/27
+ip prefix-list ENTERPRISE-PREFIXES seq 105 permit 150.45.150.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 110 permit 202.3.9.248/29
+ip prefix-list ENTERPRISE-PREFIXES seq 115 permit 110.142.226.118/32
+ip prefix-list ENTERPRISE-PREFIXES seq 120 permit 192.168.0.0/18
+ip prefix-list ENTERPRISE-PREFIXES seq 125 permit 203.52.0.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 130 permit 203.44.43.160/29
+ip prefix-list ENTERPRISE-PREFIXES seq 135 permit 129.42.42.224/32
+ip prefix-list ENTERPRISE-PREFIXES seq 140 permit 202.2.60.0/22
+ip prefix-list ENTERPRISE-PREFIXES seq 145 permit 137.172.148.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 150 permit 129.180.10.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 155 permit 192.168.128.0/17
+ip prefix-list ENTERPRISE-PREFIXES seq 160 permit 203.0.152.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 165 permit 203.8.5.64/27
+ip prefix-list ENTERPRISE-PREFIXES seq 170 permit 129.42.160.50/32
+ip prefix-list ENTERPRISE-PREFIXES seq 175 permit 207.25.252.200/32
+ip prefix-list ENTERPRISE-PREFIXES seq 180 permit 194.117.106.128/30
+ip prefix-list ENTERPRISE-PREFIXES seq 185 permit 137.172.22.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 190 permit 137.172.51.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 195 permit 192.168.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 200 permit 150.45.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 205 permit 10.80.0.0/13
+ip prefix-list ENTERPRISE-PREFIXES seq 210 permit 137.172.35.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 215 permit 137.172.68.3/32
+ip prefix-list ENTERPRISE-PREFIXES seq 220 permit 137.172.37.4/32
+ip prefix-list ENTERPRISE-PREFIXES seq 225 permit 137.172.127.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 230 permit 172.16.0.0/12
+ip prefix-list ENTERPRISE-PREFIXES seq 235 permit 198.18.0.0/27
+ip prefix-list ENTERPRISE-PREFIXES seq 240 permit 161.95.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 245 permit 137.172.50.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 250 permit 129.42.160.48/32
+ip prefix-list ENTERPRISE-PREFIXES seq 255 permit 203.52.1.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 260 permit 10.0.0.0/8
+ip prefix-list ENTERPRISE-PREFIXES seq 265 permit 203.5.103.88/32
+ip prefix-list ENTERPRISE-PREFIXES seq 270 permit 150.45.156.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 275 permit 161.93.0.0/16
+ip prefix-list ENTERPRISE-PREFIXES seq 280 permit 137.172.9.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 285 permit 203.44.186.192/27
+ip prefix-list ENTERPRISE-PREFIXES seq 290 permit 137.172.10.0/24
+ip prefix-list ENTERPRISE-PREFIXES seq 295 permit 137.172.70.119/32
+ip prefix-list ENTERPRISE-PREFIXES seq 300 permit 172.21.0.0/16
+no service-routing capabilities-manager
+logging trap notifications
+logging source-interface Loopback10
+logging host 132.147.22.30
+logging host 192.168.206.207
+logging host 192.168.208.107
+logging host 192.168.206.83
+logging host 192.168.206.84
+logging host 137.172.146.183
+access-list 53 permit 150.45.152.8
+access-list 53 permit 192.168.206.150
+access-list 53 permit 192.168.206.250
+access-list 53 permit 192.168.206.207
+access-list 53 permit 192.168.208.107
+access-list 53 permit 10.147.26.102
+access-list 53 permit 192.168.206.84
+access-list 53 permit 192.168.206.83
+access-list 53 permit 10.255.254.0 0.0.0.255
+access-list 53 permit 137.172.146.160 0.0.0.31
+access-list 53 permit 137.172.148.24 0.0.0.7
+access-list 53 deny   any log
+access-list 60 permit 132.147.22.31
+access-list 60 permit 132.147.22.30
+access-list 60 permit 132.147.22.33
+access-list 60 permit 132.147.22.32
+access-list 60 permit 132.147.22.35
+access-list 60 permit 132.147.22.34
+access-list 60 permit 132.147.22.37
+access-list 60 permit 132.147.22.36
+access-list 60 permit 132.147.22.38
+access-list 60 permit 150.45.152.8
+access-list 60 permit 192.168.206.150
+access-list 60 permit 192.168.206.250
+access-list 60 remark - ACL FOR SNMP SOURCE FILTERING
+access-list 60 permit 192.168.206.207
+access-list 60 permit 192.168.208.107
+access-list 60 permit 10.147.26.102
+access-list 60 permit 192.168.206.84
+access-list 60 permit 192.168.206.83
+access-list 61 permit 132.147.22.31
+access-list 61 permit 132.147.22.30
+access-list 61 permit 132.147.22.33
+access-list 61 permit 132.147.22.32
+access-list 61 permit 132.147.22.35
+access-list 61 permit 132.147.22.34
+access-list 61 permit 132.147.22.37
+access-list 61 permit 132.147.22.36
+access-list 61 permit 132.147.22.38
+access-list 61 permit 150.45.152.8
+access-list 61 permit 10.147.26.102
+access-list 61 permit 192.168.206.84
+access-list 61 permit 192.168.206.83
+access-list 61 remark VTY Access-list
+access-list 61 permit 192.168.206.0 0.0.0.255
+access-list 61 permit 192.168.208.0 0.0.0.255
+access-list 62 permit 132.147.22.31
+access-list 62 permit 132.147.22.30
+access-list 62 permit 132.147.22.33
+access-list 62 permit 132.147.22.32
+access-list 62 permit 132.147.22.35
+access-list 62 permit 132.147.22.34
+access-list 62 permit 132.147.22.37
+access-list 62 permit 132.147.22.36
+access-list 62 permit 132.147.22.38
+access-list 62 remark HTTPS Access-list
+access-list 62 permit 192.168.206.0 0.0.0.255
+access-list 62 permit 192.168.208.0 0.0.0.255
+!
+!
+snmp-server community gftuIObp##ou RO
+snmp-server community GmRbYzm2WH6b RW 60
+snmp-server community servicenow_FM8NLcPjNAFOKWJ74DgJ RO 60
+snmp-server community infoblox_ysKw1WrUXk1ZCuN9BN6M RW 60
+snmp-server community fujitsuMhLn2qZhY7 RW 53
+snmp-server trap-source Loopback47233
+snmp-server location "Noble Park DC - Rack E19 - RU 36"
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps vrrp
+snmp-server enable traps pfr
+snmp-server enable traps flowmon
+snmp-server enable traps ds1
+snmp-server enable traps entity-perf throughput-notif
+snmp-server enable traps ds3
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps casa
+snmp-server enable traps license
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dhcp
+snmp-server enable traps dsp card-status
+snmp-server enable traps dsp oper-state
+snmp-server enable traps dsp video-usage
+snmp-server enable traps dsp video-out-of-resource
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps event-manager
+snmp-server enable traps frame-relay multilink bundle-mismatch
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps pimstdmib neighbor-loss invalid-register invalid-join-prune rp-mapping-change interface-election
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps ip local pool
+snmp-server enable traps msdp
+snmp-server enable traps mvpn
+snmp-server enable traps ospfv3 state-change
+snmp-server enable traps ospfv3 errors
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps pppoe
+snmp-server enable traps cpu threshold
+snmp-server enable traps rsvp
+snmp-server enable traps syslog
+snmp-server enable traps l2tun session
+snmp-server enable traps l2tun pseudowire status
+snmp-server enable traps aaa_server
+snmp-server enable traps atm subif
+snmp-server enable traps pki
+snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
+snmp-server enable traps ethernet evc status create delete
+snmp-server enable traps ether-oam
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps entity-state
+snmp-server enable traps entity-qfp mem-res-thresh throughput-notif
+snmp-server enable traps adslline
+snmp-server enable traps vdsl2line
+snmp-server enable traps entity-sensor
+snmp-server enable traps flash insertion removal
+snmp-server enable traps srp
+snmp-server enable traps entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps cnpd
+snmp-server enable traps mpls rfc ldp
+snmp-server enable traps mpls ldp
+snmp-server enable traps mpls rfc traffic-eng
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls fast-reroute protected
+snmp-server enable traps bfd
+snmp-server enable traps bgp cbgp2
+snmp-server enable traps pw vc
+snmp-server enable traps ipsla
+snmp-server enable traps sonet
+snmp-server enable traps dlsw
+snmp-server enable traps resource-policy
+snmp-server enable traps lisp
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps c3g
+snmp-server enable traps LTE
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps firewall serverstatus
+snmp-server enable traps nhrp nhs
+snmp-server enable traps nhrp nhc
+snmp-server enable traps nhrp nhp
+snmp-server enable traps nhrp quota-exceeded
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps gdoi gm-start-registration
+snmp-server enable traps gdoi gm-registration-complete
+snmp-server enable traps gdoi gm-re-register
+snmp-server enable traps gdoi gm-rekey-rcvd
+snmp-server enable traps gdoi gm-rekey-fail
+snmp-server enable traps gdoi ks-rekey-pushed
+snmp-server enable traps gdoi gm-incomplete-cfg
+snmp-server enable traps gdoi ks-no-rsa-keys
+snmp-server enable traps gdoi ks-new-registration
+snmp-server enable traps gdoi ks-reg-complete
+snmp-server enable traps gdoi ks-role-change
+snmp-server enable traps gdoi ks-gm-deleted
+snmp-server enable traps gdoi ks-peer-reachable
+snmp-server enable traps gdoi ks-peer-unreachable
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps alarms informational
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server enable traps ethernet cfm alarm
+snmp-server enable traps rf
+snmp-server enable traps transceiver all
+snmp-server enable traps mpls vpn
+snmp-server enable traps mpls rfc vpn
+snmp-server host 192.168.206.83 version 2c GmRbYzm2WH6b
+snmp-server host 137.172.146.181 version 2c fujitsuMhLn2qZhY7
+snmp-server host 132.147.22.30 gftuIObp##ou
+snmp-server host 132.147.22.31 gftuIObp##ou
+snmp-server host 132.147.22.32 gftuIObp##ou
+snmp-server host 192.168.206.207 gftuIObp##ou
+snmp-server host 192.168.208.107 gftuIObp##ou
+snmp ifmib ifalias long
+snmp ifmib ifindex persist
+!
+tacacs-server host 192.168.206.84 key 7 0721321E614133064E2047
+!
+!
+!
+control-plane
+!
+banner motd ^C
+***********************************************************************************
+*                             *** WARNING ***                                     *
+***********************************************************************************
+*       Access to this computer system and associated networks, computer          *
+*       resources, or data is restricted to business purposes authorized          *
+*       by Datacom Systems Ltd. User activity is monitored and recorded           *
+*       by system personnel.                                                      *
+*                                                                                 *
+*       Unauthorised access or use is a serious breach of Datacom's security      *
+*       policies, and may constitute a criminal or civil offence. If you or       *
+*       your intended use are not authorised do not proceed to log onto           *
+*       this system.                                                              *
+***********************************************************************************^C
+!
+line con 0
+ exec-timeout 30 0
+ login authentication MNSS_TAC+
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ access-class NEW_VTY in vrf-also
+ exec-timeout 30 0
+ login authentication MNSS_TAC+
+ transport input ssh
+line vty 5 15
+ access-class NEW_VTY in vrf-also
+ exec-timeout 30 0
+ login authentication MNSS_TAC+
+ transport input ssh
+line vty 16 97
+ access-class NEW_VTY in vrf-also
+!
+ntp server 132.147.22.33
+ntp server 132.147.22.1 prefer
+ntp server 150.45.152.129
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+end
