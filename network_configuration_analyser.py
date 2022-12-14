@@ -227,8 +227,7 @@ def plot_ospf_graph():
                     f' == {neighbor["Session_Status"]}'
                     f' == {remote_node_id}({neighbor["Remote_IP"]})(AreaID={neighbor["Remote_Area"]}',
                 )
-                mapped_link_list.append(current_link)
-                mapped_link_list.append(current_link_reverse)
+                mapped_link_list.extend((current_link, current_link_reverse))
 
 def plot_bgp_graph():
     """
@@ -279,8 +278,7 @@ def plot_bgp_graph():
                     f' == {neighbor["Established_Status"]}'
                     f' == {remote_node_id}({neighbor["Remote_IP"]})',
                 )
-                mapped_link_list.append(current_link)
-                mapped_link_list.append(current_link_reverse)
+                mapped_link_list.extend((current_link, current_link_reverse))
 
 def plot_l3_graph():
     """
@@ -299,10 +297,10 @@ def plot_l3_graph():
         # Initialise list to track links that are already plotted
         # initialise a drawing named L3
         diagram.add_diagram("L3")
+        # Initialise local list to map current link and reverse of current link.
+        current_link = []
+        current_link_reverse = []
         for key in l3edges_json:
-            # Initialise local list to map current link and reverse of current link.
-            current_link = []
-            current_link_reverse = []
             # Extract details of the neighbor
             neighbor = l3edges_json[key]
             node_id = f'{neighbor["Interface"]["hostname"]}'
